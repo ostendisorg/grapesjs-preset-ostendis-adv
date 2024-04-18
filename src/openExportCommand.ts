@@ -1,6 +1,6 @@
 import type { Editor } from 'grapesjs';
 import juice from 'juice';
-import { PluginOptions } from '.';
+import { PluginOptions } from './adv';
 
 export default (editor: Editor, opts: Required<PluginOptions>) => {
   const cmdm = editor.Commands;

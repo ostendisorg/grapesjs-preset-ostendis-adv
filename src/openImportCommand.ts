@@ -1,5 +1,5 @@
 import type { Editor } from 'grapesjs';
-import { PluginOptions } from '.';
+import { PluginOptions } from './adv';
 
 export default (editor: Editor, opts: Required<PluginOptions>) => {
   const cmdm = editor.Commands;
