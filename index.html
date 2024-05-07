@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>GrapesJS Ostendis Editor Advanced</title>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.21.10/css/grapes.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.21.10/css/grapes.min.css" />
     <link rel="stylesheet" href="./style/tooltip.css" />
     <link rel="stylesheet" href="./dist/grapesjs-preset-ostendis-adv.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" />
@@ -16,45 +16,6 @@
     html {
       height: 100%;
       margin: 0;
-    }
-
-    .nl-link {
-      color: inherit;
-    }
-
-    .info-link {
-      text-decoration: none;
-    }
-
-    #info-cont {
-      line-height: 17px;
-    }
-
-    .grapesjs-logo {
-      display: block;
-      height: 90px;
-      margin: 0 auto;
-      width: 90px;
-    }
-
-    .grapesjs-logo path {
-      stroke: #eee !important;
-      stroke-width: 8 !important;
-    }
-
-    #toast-container {
-      font-size: 13px;
-      font-weight: lighter;
-    }
-
-    #toast-container > div,
-    #toast-container > div:hover {
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-      font-family: Helvetica, sans-serif;
-    }
-
-    #toast-container > div {
-      opacity: 0.95;
     }
   </style>
 
@@ -538,23 +499,33 @@
     <script type="text/javascript">
       // Set up GrapesJS editor with the plugin
       window.onload = () => {
-        window.editor = grapesjs.init({
+        grapesjs.init({
           height: "100%",
           storageManager: false,
+          richTextEditor: {
+            actions: ["bold", "italic", "underline", "link"],
+            onPaste: ({ ev, rte }) => {
+              ev.preventDefault();
+              const { clipboardData } = ev;
+              const text = clipboardData.getData("text");
+              rte.exec("insertText", text);
+            },
+          },
+          log: ["warning", "error"],
+          container: "#gjs",
+          fromElement: true,
+          cssIcons: null,
           canvas: {
             styles: ["https://use.fontawesome.com/releases/v6.5.1/css/all.css", "./style/canvasStyle.css"],
           },
+          canvasCss: `.gjs-selected{
+                      outline: 2px solid #3b5998 !important;
+                      outline-offset: -2px !important;
+                    }`,
           blockManager: { appendOnClick: 1 },
-          container: "#gjs",
-          fromElement: true,
           plugins: ["grapesjs-preset-ostendis-adv"],
           pluginsOpts: {
-            "grapesjs-preset-ostendis-adv": {
-              modalLabelImport: "Paste all your code here below and click import",
-              modalLabelExport: "Copy the code and use it wherever you want",
-              importPlaceholder: '<table class="table"><tr><td class="cell">Hello world!</td></tr></table>',
-              categoryLabel: "Default",
-            },
+            "grapesjs-preset-ostendis-adv": {},
           },
         });
       };

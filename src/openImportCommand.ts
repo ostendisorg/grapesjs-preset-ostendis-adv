@@ -1,5 +1,5 @@
-import type { Editor } from 'grapesjs';
-import { PluginOptions } from './adv';
+import type { Editor } from "grapesjs";
+import PluginOptions from "./pluginOptions";
 
 export default (editor: Editor, opts: Required<PluginOptions>) => {
   const cmdm = editor.Commands;
@@ -11,18 +11,18 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
 
     createCodeViewer(): any {
       return editor.CodeManager.createViewer({
-        codeName: 'htmlmixed',
+        codeName: "htmlmixed",
         theme: opts.codeViewerTheme,
         readOnly: false,
       });
     },
 
     createCodeEditor() {
-      const el = document.createElement('div');
+      const el = document.createElement("div");
       const codeEditor = this.createCodeViewer();
 
-      el.style.flex = '1 0 auto';
-      el.style.boxSizing = 'border-box';
+      el.style.flex = "1 0 auto";
+      el.style.boxSizing = "border-box";
       el.className = `${pfx}import-code`;
       el.appendChild(codeEditor.getElement());
 
@@ -33,12 +33,12 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       let containerEl = this.containerEl;
 
       if (!containerEl) {
-        containerEl = document.createElement('div');
+        containerEl = document.createElement("div");
         containerEl.className = `${pfx}import-container`;
-        containerEl.style.display = 'flex';
-        containerEl.style.gap = '5px';
-        containerEl.style.flexDirection = 'column';
-        containerEl.style.justifyContent = 'space-between';
+        containerEl.style.display = "flex";
+        containerEl.style.gap = "5px";
+        containerEl.style.flexDirection = "column";
+        containerEl.style.justifyContent = "space-between";
         this.containerEl = containerEl;
       }
 
@@ -52,22 +52,22 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       // Init code viewer if not yet instantiated
       if (!codeEditorHtml) {
         const codeViewer = this.createCodeEditor();
-        const btnImp = document.createElement('button');
+        const btnImp = document.createElement("button");
         codeEditorHtml = codeViewer.codeEditor;
         this.codeEditorHtml = codeEditorHtml;
 
-        if(opts.modalLabelImport){
-          let labelEl = document.createElement('div');
+        if (opts.t9n.modalLabelImport) {
+          let labelEl = document.createElement("div");
           labelEl.className = `${pfx}import-label`;
-          labelEl.innerHTML = opts.modalLabelImport;
+          labelEl.innerHTML = opts.t9n.modalLabelImport;
           container.appendChild(labelEl);
         }
 
         // Init import button
-        btnImp.innerHTML = opts.modalBtnImport;
-        btnImp.type = 'button';
+        btnImp.innerHTML = opts.t9n.modalBtnImport;
+        btnImp.type = "button";
         btnImp.className = `${pfx}btn-prim ${pfx}btn-import`;
-        btnImp.style.alignSelf = 'flex-start';
+        btnImp.style.alignSelf = "flex-start";
         btnImp.onclick = () => {
           const code = codeViewer.codeEditor.editor.getValue();
           editor.Components.clear();
@@ -81,12 +81,12 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       }
 
       editor.Modal.open({
-        title: opts.modalTitleImport,
+        title: opts.t9n.modalTitleImport,
         content: container,
       });
 
       if (codeEditorHtml) {
-        codeEditorHtml.setContent(opts.importPlaceholder || '');
+        codeEditorHtml.setContent(opts.t9n.importPlaceholder || "");
         codeEditorHtml.editor.refresh();
       }
     },

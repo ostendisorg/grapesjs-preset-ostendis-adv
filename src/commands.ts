@@ -1,8 +1,8 @@
 import type { Editor } from 'grapesjs';
-import { PluginOptions } from '.';
+import PluginOptions from "./pluginOptions";
 import { cmdDeviceDesktop, cmdDeviceMobile, cmdDeviceTablet } from './consts';
 
-export default (editor: Editor, opts: Required<PluginOptions>) => {
+export default async (editor: Editor, opts: Required<PluginOptions>) => {
     const { Commands } = editor;
 
     Commands.add(cmdDeviceDesktop, {
