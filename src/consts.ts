@@ -1,8 +1,18 @@
 import PluginOptions from "./pluginOptions";
+import { ostTrans } from "./ostTranslations";
 
 export const cmdDeviceDesktop = "set-device-desktop";
 export const cmdDeviceTablet = "set-device-tablet";
 export const cmdDeviceMobile = "set-device-mobile";
+
+export const nameTrait = {
+  name: "name",
+};
+
+export const valueTrait = {
+  name: "value",
+  label: ostTrans.traitBlkValue,
+};
 
 // Define ostendis type trait for text and default components
 export function ostTypeTextTrait(opts: Required<PluginOptions>) {

@@ -1,9 +1,56 @@
 import type { Editor } from "grapesjs";
 import PluginOptions from "./pluginOptions";
-import { ostTypeTextTrait, ostTypeImageTrait, ostTypeHideInSimpleHtmlTrait, iconTrait } from "./consts";
+import { ostTypeTextTrait, ostTypeImageTrait, ostTypeHideInSimpleHtmlTrait, iconTrait, nameTrait, valueTrait } from "./consts";
 
 export default (editor: Editor, opts: Required<PluginOptions>) => {
   const { DomComponents } = editor;
+
+  // Add ostendis block trait to video components
+  var dType = DomComponents.getType("video");
+  var dModel = dType?.model;
+  var dView = dType?.view;
+  const yt = "yt";
+  const vi = "vi";
+  const ytnc = "ytnc";
+
+  DomComponents.addType("video", {
+    model: dModel.extend({
+      updateTraits() {
+        const { em } = this;
+        const prov = this.get("provider");
+        let tagName = "iframe";
+        let traits;
+
+        switch (prov) {
+          case yt:
+          case ytnc:
+            traits = this.getYoutubeTraits();
+            break;
+          case vi:
+            traits = this.getVimeoTraits();
+            break;
+          default:
+            tagName = "video";
+            traits = this.getSourceTraits();
+        }
+
+        traits.push({
+          type: "select",
+          label: "Ostendis Blocks",
+          name: "data-ost-type",
+          options: [
+            { id: "", name: opts.t9n.traitOstNone },
+            { id: "videoURL", name: opts.t9n.traitOstVideoURL },
+          ],
+        });
+
+        this.set({ tagName }, { silent: 1 }); // avoid break in view
+        this.set({ traits });
+        em.get("ready") && em.trigger("component:toggled");
+      },
+    }),
+    view: dView,
+  });
 
   // Scale the new range
   DomComponents.addType("scale", {
@@ -58,14 +105,6 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       },
     },
   });
-  // Range trait
-  const nameTrait = {
-    name: "name",
-  };
-  const valueTrait = {
-    name: "value",
-    label: opts.t9n.traitBlkValue,
-  };
 
   // INPUT
   DomComponents.addType("range", {
@@ -86,11 +125,13 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       },
     },
   });
+
   // Unsorted list item component
   const uListItemContent = `<span class="fa-li" style="left:-2em;width:2em;" draggable="false" removable="false" editable="false" copyable="false">
   <i class="fas fa-circle" data-gjs-type="icon" style="font-size:0.4em;line-height:inherit;display:block;" draggable="false" removable="false" editable="false" copyable="false"></i>
   </span>
   <p style="margin:0;padding:0;text-align:left;" draggable="false" removable="false" copyable="false">Text</p>`;
+
   DomComponents.addType("ulistitem", {
     isComponent: (el) => {
       if (el.tagName === "LI" && el.classList.contains("ulistitem")) {
@@ -108,8 +149,10 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       },
     },
   });
+
   // Unsorted list component with fontawesome
   const ulListItem = `<li style="text-align:left" data-gjs-type="ulistitem">` + uListItemContent + `</li>`;
+
   DomComponents.addType("ulist", {
     isComponent: (el) => {
       if (el.tagName === "UL" && el.classList.contains("ulist")) {
@@ -126,6 +169,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       },
     },
   });
+
   // Icon component
   DomComponents.addType("icon", {
     isComponent: (el) => {
@@ -142,11 +186,11 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
         droppable: false,
         removable: false,
         copyable: false,
-        traits: [ iconTrait(opts), ostTypeHideInSimpleHtmlTrait(opts),
-        ],
+        traits: [iconTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
       },
     },
   });
+
   // Add ostendis type trait to table components
   DomComponents.addType("table", {
     model: {
@@ -155,6 +199,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       },
     },
   });
+
   // Add ostendis type trait to link components
   DomComponents.addType("link", {
     model: {
@@ -163,6 +208,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       },
     },
   });
+
   // Add ostendis type trait to image components
   DomComponents.addType("image", {
     model: {
@@ -171,6 +217,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       },
     },
   });
+
   // Add ostendis type trait to text components
   DomComponents.addType("textnode", {
     model: {
@@ -179,6 +226,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       },
     },
   });
+
   // Add ostendis type trait to text components
   DomComponents.addType("text", {
     model: {
@@ -187,6 +235,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       },
     },
   });
+
   // Add ostendis type trait to default components
   DomComponents.addType("default", {
     model: {

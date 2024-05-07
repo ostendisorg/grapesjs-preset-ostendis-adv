@@ -64,6 +64,16 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       id: "options",
       buttons: [
         {
+          id: "ost-blocks-visibility",
+          className: "fa-solid fa-file-circle-check",
+          command: "ost-blocks-visibility",
+          context: "ost-blocks-visibility",
+          attributes: {
+            "data-tooltip": opts.t9n.cmdBtnViewCompLabel,
+            "data-tooltip-pos": "bottom",
+          },
+        },
+        {
           id: activateOutline,
           command: activateOutline,
           context: activateOutline,
