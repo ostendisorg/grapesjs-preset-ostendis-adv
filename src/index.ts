@@ -17,7 +17,7 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
     blocks: [],
     block: () => ({}),
     juiceOpts: {},
-    usedOstBlockTypes: [],
+    usedOstBlocks: [],
     cmdOpenImport: "gjs-open-import-template",
     cmdInlineHtml: "gjs-get-inlined-html",
     codeViewerTheme: "hopscotch",

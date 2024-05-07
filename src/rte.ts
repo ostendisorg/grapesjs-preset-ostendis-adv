@@ -1,7 +1,7 @@
 import type { Editor } from "grapesjs";
 import PluginOptions from "./pluginOptions";
 
-export default (editor: Editor, opts: Required<PluginOptions>) => {
+export default async (editor: Editor, opts: Required<PluginOptions>) => {
   const { RichTextEditor } = editor;
 
   RichTextEditor.add("removeFormat", {
