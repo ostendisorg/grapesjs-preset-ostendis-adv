@@ -69,7 +69,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           command: "ost-blocks-visibility",
           context: "ost-blocks-visibility",
           attributes: {
-            "data-tooltip": opts.t9n.cmdBtnViewCompLabel,
+            "data-tooltip": opts.t9n.cmdBtnViewOstBlocks,
             "data-tooltip-pos": "bottom",
           },
         },

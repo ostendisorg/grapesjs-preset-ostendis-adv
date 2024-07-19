@@ -39,13 +39,13 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
     },
   });
 
-  var btnStyle = 'style=" display: block; padding: 10px 30px; margin: 10px auto; text-decoration: none;' + 'border: none; color: #fff; text-align: center; background-color: #4b75cd; border-radius: 0.25rem 0.25rem 0.25em 0.25rem;"';
+  var btnStyle = `display: block; padding: 10px 30px; margin: 10px auto; text-decoration: none; border: none; color: #fff; text-align: center; background-color: #4b75cd; border-radius: 0.25rem 0.25rem 0.25em 0.25rem;`;
 
   Blocks.add("applyButton", {
     label: opts.t9n.buttonApplyBlkLabel,
     category: opts.t9n.categoryLabel,
-    attributes: { class: "fa-solid fa-link" },
-    content: `<a data-gjs-type="link" href="$$$ApplyLink$$$" target="_blank" role="button" ` + btnStyle + `>${opts.t9n.buttonApplyBlkText}</a>`,
+    content: `<a data-gjs-type="link" href="$$$ApplyLink$$$" target="_blank" role="button" style="` + btnStyle + `">${opts.t9n.buttonApplyBlkText}</a>`,
+    attributes: { class: "fa-regular fa-square-full" },
   });
 
   Blocks.add("button", {
