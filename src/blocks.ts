@@ -45,14 +45,20 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
     label: opts.t9n.buttonApplyBlkLabel,
     category: opts.t9n.categoryLabel,
     content: `<a data-gjs-type="link" href="$$$ApplyLink$$$" target="_blank" role="button" style="` + btnStyle + `">${opts.t9n.buttonApplyBlkText}</a>`,
-    attributes: { class: "fa-regular fa-square-full" },
+    media: `<svg style="width:48px" viewBox="0 0 12.7 9.525" xmlns="http://www.w3.org/2000/svg">
+        <path d="m0.19094 2.6359h12.319v4.2532h-12.319z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width=".38088"/>
+        <path d="m1.8455 4.4078h8.955v0.70941h-8.955z" stroke-width=".96897"/>
+      </svg>`,
   });
 
   Blocks.add("button", {
     label: opts.t9n.buttonBlkLabel,
     category: opts.t9n.categoryLabel,
-    content: `<a data-gjs-type="link" role="button" ` + btnStyle + `>Button</a>`,
-    attributes: { class: "fa-regular fa-square-full" },
+    content: `<a data-gjs-type="link" role="button" style="` + btnStyle + `">Button</a>`,
+    media: `<svg style="width:48px" viewBox="0 0 12.7 9.525" xmlns="http://www.w3.org/2000/svg">
+        <path d="m0.19094 2.6359h12.319v4.2532h-12.319z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width=".38088"/>
+        <path d="m1.8455 4.4078h8.955v0.70941h-8.955z" stroke-width=".96897"/>
+      </svg>`,
   });
 
   Blocks.add("divider", {
@@ -97,16 +103,11 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
     content: { type: "ulist" },
   });
 
-  // Block icons
-  var blockTitleAndText = '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48.238" viewBox="0 0 12.7 12.763"><path fill="none" stroke="currentColor" stroke-width=".523" d="M.262 2.59h12.177v8.113H.262z"/><path fill="currentColor" stroke="currentColor" stroke-width=".106" d="M1.536 8.474h9.632v.556H1.536zm0-1.053h9.632v.556H1.535zm0-1.053h9.63v.557h-9.63zm-.004-2.106h6.954v.973H1.532z"/></svg>';
-  var blockTitleAndList =
-    '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48.238" viewBox="0 0 12.7 12.763"><path fill="none" stroke="currentColor" stroke-width=".523" d="M.262 2.59h12.177v8.113H.262z"/><path fill="currentColor" stroke="currentColor" stroke-width=".1" d="M2.058 8.752a.238.238 0 0 1-.238.238.238.238 0 0 1-.238-.238.238.238 0 0 1 .238-.238.238.238 0 0 1 .238.238zm0-1.053a.238.238 0 0 1-.238.238.238.238 0 0 1-.238-.238.238.238 0 0 1 .238-.238.238.238 0 0 1 .238.238zm0-1.053a.238.238 0 0 1-.238.238.238.238 0 0 1-.238-.238.238.238 0 0 1 .238-.238.238.238 0 0 1 .238.238zm.651 1.828h8.459v.556H2.709zm0-1.053h8.459v.556H2.709zm0-1.053h8.459v.556H2.709zM1.532 4.262h6.954v.973H1.532z"/></svg>';
-
   // Title and text block
   Blocks.add("titleAndText", {
     label: opts.t9n.titleAndTextBlkLabel,
     category: opts.t9n.categoryLabel,
-    media: blockTitleAndText,
+    media: `'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48.238" viewBox="0 0 12.7 12.763"><path fill="none" stroke="currentColor" stroke-width=".523" d="M.262 2.59h12.177v8.113H.262z"/><path fill="currentColor" stroke="currentColor" stroke-width=".106" d="M1.536 8.474h9.632v.556H1.536zm0-1.053h9.632v.556H1.535zm0-1.053h9.63v.557h-9.63zm-.004-2.106h6.954v.973H1.532z"/></svg>`,
     content: {
       name: opts.t9n.titleAndTextBlkLabel,
       components: [
@@ -126,7 +127,9 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
   Blocks.add("titleAndList", {
     label: opts.t9n.titleAndListBlkLabel,
     category: opts.t9n.categoryLabel,
-    media: blockTitleAndList,
+    media: `<svg width="48" height="48.238" viewBox="0 0 12.7 12.763"><path fill="none" stroke="currentColor" stroke-width=".523" d="M.262 2.59h12.177v8.113H.262z"/>
+      <path fill="currentColor" stroke="currentColor" stroke-width=".1" d="M2.058 8.752a.238.238 0 0 1-.238.238.238.238 0 0 1-.238-.238.238.238 0 0 1 .238-.238.238.238 0 0 1 .238.238zm0-1.053a.238.238 0 0 1-.238.238.238.238 0 0 1-.238-.238.238.238 0 0 1 .238-.238.238.238 0 0 1 .238.238zm0-1.053a.238.238 0 0 1-.238.238.238.238 0 0 1-.238-.238.238.238 0 0 1 .238-.238.238.238 0 0 1 .238.238zm.651 1.828h8.459v.556H2.709zm0-1.053h8.459v.556H2.709zm0-1.053h8.459v.556H2.709zM1.532 4.262h6.954v.973H1.532z"/>
+    </svg>`,
     content: {
       name: opts.t9n.titleAndListBlkLabel,
       components: [
