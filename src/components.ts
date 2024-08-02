@@ -1,6 +1,6 @@
 import type { Editor } from "grapesjs";
 import PluginOptions from "./pluginOptions";
-import { ostTypeTextTrait, ostTypeImageTrait, ostTypeHideInSimpleHtmlTrait, iconTrait, nameTrait, valueTrait } from "./consts";
+import { uListItemContent, ulListItem, ostTypeTextTrait, ostTypeImageTrait, ostTypeHideInSimpleHtmlTrait, headerTrait, iconTrait, nameTrait, valueTrait } from "./consts";
 
 export default (editor: Editor, opts: Required<PluginOptions>) => {
   const { DomComponents } = editor;
@@ -127,11 +127,6 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
   });
 
   // Unsorted list item component
-  const uListItemContent = `<span class="fa-li" style="left:-2em;width:2em;" draggable="false" removable="false" editable="false" copyable="false">
-  <i class="fas fa-circle" data-gjs-type="icon" style="font-size:0.4em;line-height:inherit;display:block;" draggable="false" removable="false" editable="false" copyable="false"></i>
-  </span>
-  <p style="margin:0;padding:0;text-align:left;" draggable="false" removable="false" copyable="false">Text</p>`;
-
   DomComponents.addType("ulistitem", {
     isComponent: (el) => {
       if (el.tagName === "LI" && el.classList.contains("ulistitem")) {
@@ -151,8 +146,6 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
   });
 
   // Unsorted list component with fontawesome
-  const ulListItem = `<li style="text-align:left" data-gjs-type="ulistitem">` + uListItemContent + `</li>`;
-
   DomComponents.addType("ulist", {
     isComponent: (el) => {
       if (el.tagName === "UL" && el.classList.contains("ulist")) {
@@ -170,6 +163,23 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
     },
   });
 
+  // Header component
+  DomComponents.addType("header", {
+      isComponent: (el) => {
+        const headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
+        if (el.tagName && headings.includes(el.tagName.toLowerCase())) {
+          return { type: "header"};
+        }
+      },
+      extend: "text",
+      model: {
+        defaults: {
+          tagName: "h1", //Default
+          traits: ["id", headerTrait(opts), ostTypeTextTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
+        },
+      }
+    });
+
   // Icon component
   DomComponents.addType("icon", {
     isComponent: (el) => {
@@ -182,10 +192,6 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       defaults: {
         tagName: "i",
         attributes: { class: "fas fa-star" },
-        draggable: false,
-        droppable: false,
-        removable: false,
-        copyable: false,
         traits: [iconTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
       },
     },

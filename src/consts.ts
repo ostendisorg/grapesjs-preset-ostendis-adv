@@ -14,6 +14,14 @@ export const valueTrait = {
   label: ostTrans.traitBlkValue,
 };
 
+export const uListItemContent = `
+    <span class="fa-li" style="left:-2em;width:2em;">
+      <i class="fas fa-circle" data-gjs-type="icon" style="font-size:0.4em;line-height:inherit;display:block;"></i>
+    </span>
+    <p style="margin:0;padding:0;text-align:left;">Text</p>`;
+
+export const ulListItem = `<li style="text-align:left" data-gjs-type="ulistitem">` + uListItemContent + `</li>`;
+
 // Define ostendis type trait for text and default components
 export function ostTypeTextTrait(opts: Required<PluginOptions>) {
   return {
@@ -81,6 +89,23 @@ export function ostTypeHideInSimpleHtmlTrait(opts: Required<PluginOptions>) {
     },
     valueTrue: "1",
     valueFalse: "",
+  };
+}
+// Define ostendis type header
+export function headerTrait(opts: Required<PluginOptions>) {
+  return {
+    type: "select",
+    name: "tagName",
+    label: opts.t9n.traitHeaderLabel,
+    options: [
+      { id: "h1", value:"h1", name: opts.t9n.traitHeaderSelectH1 },
+      { id: "h2", value:"h2", name: opts.t9n.traitHeaderSelectH2 },
+      { id: "h3", value:"h3", name: opts.t9n.traitHeaderSelectH3 },
+      { id: "h4", value:"h4", name: opts.t9n.traitHeaderSelectH4 },
+      { id: "h5", value:"h5", name: opts.t9n.traitHeaderSelectH5 },
+      { id: "h6", value:"h6", name: opts.t9n.traitHeaderSelectH6 },
+    ],
+    changeProp: true,
   };
 }
 // Define ostendis type trait for icons

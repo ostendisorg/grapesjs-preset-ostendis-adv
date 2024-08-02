@@ -20,10 +20,20 @@ export const ostTrans: OstTranslations = {
   titleAndTextBlkContentTitle: "Title",
   titleAndListBlkLabel: "Title and list",
   titleAndListBlkContentTitle: "Title",
-  iconBlkLabel: "Icon",
+  iconBlkLabel: "Icons",
   imageBlkLabel: "Image",
   videoBlkLabel: "Video",
   mapBlkLabel: "Map",
+
+  
+  headerBlkLabel: "Header", 
+  traitHeaderSelectH1: "H1 (highest)",
+  traitHeaderSelectH2: "H2",
+  traitHeaderSelectH3: "H3",
+  traitHeaderSelectH4: "H4",
+  traitHeaderSelectH5: "H5",
+  traitHeaderSelectH6: "H6 (lowest)",
+  traitHeaderLabel: "Header Level",
 
   traitBlkOstendisTooltip: "Define Ostendis block.",
   traitOstNone: "None",
