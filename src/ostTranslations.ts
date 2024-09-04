@@ -82,7 +82,6 @@ export const ostTrans: OstTranslations = {
   cmdBtnUndoLabel: "Undo",
   cmdBtnRedoLabel: "Redo",
   openTmBtnTitle: "Open Parameter",
-
   cmdRteRemoveFormat: "Remove format",
 
   labelIconTooltip: "For more icons: change class name in style manager.",
