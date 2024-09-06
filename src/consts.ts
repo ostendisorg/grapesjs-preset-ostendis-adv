@@ -80,15 +80,15 @@ export function ostTypeImageTrait(opts: Required<PluginOptions>) {
 // Define ostendis type "hide in simple html"
 export function ostTypeHideInSimpleHtmlTrait(opts: Required<PluginOptions>) {
   return {
-    type: "checkbox",
+    type: 'checkbox',
     label: opts.t9n.hideInSimpleHtmlLabel,
-    name: "data-ost-simple-hide",
+    name: 'data-ost-simple-hide',
+    valueTrue: '1',
+    valueFalse: '',
     attributes: {
-      "data-tooltip": opts.t9n.hideInSimpleHtmlTooltip,
-      "data-tooltip-pos": "bottom",
+      'data-tooltip': opts.t9n.hideInSimpleHtmlTooltip,
+      'data-tooltip-pos': 'bottom',
     },
-    valueTrue: "1",
-    valueFalse: "",
   };
 }
 // Define ostendis type header

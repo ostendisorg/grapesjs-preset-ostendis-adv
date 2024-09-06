@@ -15,7 +15,6 @@ export const ostTrans: OstTranslations = {
   openLayers: "Open Layer Manager",
   openBlocks: "Open Blocks",
 
-
   modalTitleImport: "Import template",
   modalTitleExport: "Export template",
   modalLabelImport: "",

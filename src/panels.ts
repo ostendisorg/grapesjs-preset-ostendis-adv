@@ -185,7 +185,6 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
     },
   ]);
 
-  // Do stuff on load
   editor.onReady(() => {
     if (opts.showOutlineOnLoad) {
       const btn = Panels.getButton("options", activateOutline);
