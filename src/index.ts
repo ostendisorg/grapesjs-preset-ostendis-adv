@@ -60,13 +60,6 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
     const ostTools = document.createElement("div");
     ostTools.classList.add("gjs-ost-toolbar");
     tools?.append(ostTools);
-
-    // Panels buttons translation and activate
-    var swVisBtn = editor.Panels.getButton("options", "sw-visibility");
-    swVisBtn?.set("attributes", {
-      title: options.t9n.cmdBtnViewCompLabel,
-    });
-    swVisBtn && swVisBtn.set("active", 1);
   });
 
   // On selected components

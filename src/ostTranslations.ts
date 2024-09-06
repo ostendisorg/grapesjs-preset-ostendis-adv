@@ -1,6 +1,21 @@
 import type { OstTranslations } from "./pluginOptions";
 
 export const ostTrans: OstTranslations = {
+  cmdBtnDesktopLabel: "Desktop",
+  cmdBtnTabletLabel: "Tablet",
+  cmdBtnMobileLabel: "Mobile",
+  cmdBtnViewOstBlocks: "View Ostendis Blocks",
+  cmdBtnViewCompLabel: "View components",
+  cmdBtnImportLabel: "Import template",
+  cmdBtnExportLabel: "Export template",
+  cmdBtnUndoLabel: "Undo",
+  cmdBtnRedoLabel: "Redo",
+  openStyleManager: "Open Style Manager",
+  openTraits: "Open Parameter",
+  openLayers: "Open Layer Manager",
+  openBlocks: "Open Blocks",
+
+
   modalTitleImport: "Import template",
   modalTitleExport: "Export template",
   modalLabelImport: "",
@@ -24,7 +39,6 @@ export const ostTrans: OstTranslations = {
   imageBlkLabel: "Image",
   videoBlkLabel: "Video",
   mapBlkLabel: "Map",
-
   
   headerBlkLabel: "Header", 
   traitHeaderSelectH1: "H1 (highest)",
@@ -71,18 +85,7 @@ export const ostTrans: OstTranslations = {
   ostToolbarDelete: "Delete list element",
   ostToolbarUp: "Move list element up",
   ostToolbarDown: "Move list element down",
-
-  cmdBtnDesktopLabel: "Desktop",
-  cmdBtnTabletLabel: "Tablet",
-  cmdBtnMobileLabel: "Mobile",
-  cmdBtnViewOstBlocks: "View Ost Blocks",
-  cmdBtnViewCompLabel: "View components",
-  cmdBtnImportLabel: "Import template",
-  cmdBtnExportLabel: "Export template",
-  cmdBtnUndoLabel: "Undo",
-  cmdBtnRedoLabel: "Redo",
-  openTmBtnTitle: "Open Parameter",
-  cmdRteRemoveFormat: "Remove format",
+  cmdRteRemoveFormat: "Remove format",   
 
   labelIconTooltip: "For more icons: change class name in style manager.",
   labelIconSelectMinus: "minus",
