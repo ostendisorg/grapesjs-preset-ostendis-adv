@@ -34,9 +34,9 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
   // Change some config
   config.devicePreviewMode = true;
 
+  loadCommands(editor, options);
   loadComponents(editor, options);
   loadTraits(editor, options);
-  await loadCommands(editor, options);
   loadBlocks(editor, options);
   loadPanels(editor, options);
   await loadRte(editor, options);

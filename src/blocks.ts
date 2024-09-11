@@ -541,6 +541,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         "text-decoration": "none",
       },
       attributes: {
+        "data-ost-simple-hide" : "1",
         href: "mailto:example@mail.com?subject=Sieh%20dir%20dieses%20Inserat%20an&body=$$$ViewLink$$$",
       },
       components: `<div style="display:inline-block; text-align:center; width:28px; height:28px; font-size:28px; color:#293133;">
@@ -561,6 +562,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         "text-decoration": "none",
       },
       attributes: {
+        "data-ost-simple-hide" : "1",
         href: "sms:?body=Sieh%20dir%20dieses%20Inserat%20an%20$$$ViewLink$$$",
       },
       components: `<div style="display:inline-block; text-align:center; width:28px; height:28px; font-size:28px; color:#293133;">
@@ -581,6 +583,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         "text-decoration": "none",
       },
       attributes: {
+        "data-ost-simple-hide" : "1",
         href: "javascript:if(window.print)window.print()",
       },
       components: `<div style="display:inline-block; text-align:center; width:28px; height:28px; font-size:28px; color:#293133;">
