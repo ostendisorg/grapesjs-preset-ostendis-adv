@@ -108,7 +108,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         </svg>`,
     content: [
       { tagname: "div", components:[
-          `<h3>${opts.t9n.titleAndListBlkContentTitle}</h3>`,
+          `<h3>Title</h3>`,
           {tagname: "div",components:[ {type: "text", content: "Text"} ] },
         ]
       }
@@ -132,7 +132,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       </svg>`,
     content: [
       { tagname: "div", components:[
-          `<h3>${opts.t9n.titleAndListBlkContentTitle}</h3>`,
+          `<h3>Title</h3>`,
           {tagname: "div",components:[{type: "ulist"}]},
         ]
       }
@@ -182,7 +182,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
   });
 
   Blocks.add("box", {
-    label: "Box",
+    label: opts.t9n.boxBlkLabel,
     category: opts.t9n.categoryLabel,
     media: `<svg style="width:60px" viewBox="0 0 24 24">
         <path fill="currentColor" d="M2 20h20V4H2v16Zm-1 0V4a1 1 0 0 1 1-1h20a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Z"></path>
