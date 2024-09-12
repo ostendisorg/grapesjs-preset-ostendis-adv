@@ -42,7 +42,7 @@ export const ostTrans: OstTranslations = {
   iconBlkLabel: "Icons",
   imageBlkLabel: "Image",
   videoBlkLabel: "Video",
-  boxBlkLabel : "Box",
+  boxBlkLabel: "Box",
   sect333BlkLabel: "1/1/1 Columns",
   sect55BlkLabel: "1/1 Columns",
   sect37BlkLabel: "3/7 Columns",
