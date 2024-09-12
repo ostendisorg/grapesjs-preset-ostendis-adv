@@ -70,14 +70,14 @@ export const ostTrans: OstTranslations = {
 
   traitBlkValue: "Value",  
   
+  traitHeaderLabel: "Header Level",
   traitHeaderSelectH1: "H1 (highest)",
   traitHeaderSelectH2: "H2",
   traitHeaderSelectH3: "H3",
   traitHeaderSelectH4: "H4",
   traitHeaderSelectH5: "H5",
   traitHeaderSelectH6: "H6 (lowest)",
-  traitHeaderLabel: "Header Level",
-
+  
   traitBlkOstendisTooltip: "Define Ostendis block.",
   traitOstNone: "None",
   traitOstOrganizationHeading: "Organization Heading",
