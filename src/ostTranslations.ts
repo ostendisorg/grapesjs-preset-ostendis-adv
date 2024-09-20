@@ -95,6 +95,7 @@ export const ostTrans: OstTranslations = {
   traitOstContactHeading: "Contact Heading",
   traitOstContact: "Contact",
   traitOstCallToAction: "Call to action",
+
   traitOstLogoPicURL: "Logo Image",
   traitOstHeaderPic1URL: "Header Image 1",
   traitOstHeaderPic2URL: "Header Image 2",
@@ -133,6 +134,10 @@ export const ostTrans: OstTranslations = {
   labelIconSelectPhone: "phone",
   labelIconSelectEnvelope: "envelope",
   labelIconSelectStar: "star",
+
+  labelScalePercent: "Percent",
+  labelScaleBarColor: "Color 1",
+  labelScaleBgColor: "Color 2",
 
   ostToolbarClone: "Clone list element",
   ostToolbarDelete: "Delete list element",
