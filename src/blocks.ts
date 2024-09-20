@@ -432,6 +432,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       attributes: {
         href: "https://www.facebook.com/sharer/sharer.php?u=$$$ViewLink$$$",
         target: "_blank",
+        "data-ost-simple-hide" : "1",
       },
       components: `<div style="border: 2px solid #293133; border-radius: 3px; display:flex; justify-content: space-around; align-items: center; text-align:center; width:60px; height:28px; font-size:21px; color:#293133;">
                     <i class="fa-solid fa-share"></i>
@@ -454,6 +455,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       attributes: {
         href: "https://www.linkedin.com/shareArticle?mini=true&url=$$$ViewLink$$$",
         target: "_blank",
+        "data-ost-simple-hide" : "1",
       },
       components: `<div style="border: 2px solid #293133; border-radius: 3px; display:flex; justify-content: space-around; align-items: center; text-align:center; width:60px; height:28px; font-size:21px; color:#293133;">
                     <i class="fa-solid fa-share"></i>
@@ -476,6 +478,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       attributes: {
         href: "https://www.xing.com/spi/shares/new?url=$$$ViewLink$$$",
         target: "_blank",
+        "data-ost-simple-hide" : "1",
       },
       components: `<div style="border: 2px solid #293133; border-radius: 3px; display:flex; justify-content: space-around; align-items: center; text-align:center; width:60px; height:28px; font-size:21px; color:#293133;">
                     <i class="fa-solid fa-share"></i>
@@ -498,6 +501,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       attributes: {
         href: "https://twitter.com/intent/tweet?url=$$$ViewLink$$$&text=",
         target: "_blank",
+        "data-ost-simple-hide" : "1",
       },
       components: `<div style="border: 2px solid #293133; border-radius: 3px; display:flex; justify-content: space-around; align-items: center; text-align:center; width:60px; height:28px; font-size:21px; color:#293133;">
                     <i class="fa-solid fa-share"></i>
@@ -518,6 +522,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         "text-decoration": "none",
       },
       attributes: {
+        "data-ost-simple-hide" : "1",
         href: "https://wa.me/?text=$$$ViewLink$$$",
         target: "_blank",
       },
@@ -541,8 +546,9 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         "text-decoration": "none",
       },
       attributes: {
-        "data-ost-simple-hide" : "1",
         href: "mailto:example@mail.com?subject=Sieh%20dir%20dieses%20Inserat%20an&body=$$$ViewLink$$$",
+        target: "_blank",
+        "data-ost-simple-hide" : "1",
       },
       components: `<div style="display:inline-block; text-align:center; width:28px; height:28px; font-size:28px; color:#293133;">
                     <i class="fa-solid fa-envelope"></i>
@@ -562,8 +568,8 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         "text-decoration": "none",
       },
       attributes: {
-        "data-ost-simple-hide" : "1",
         href: "sms:?body=Sieh%20dir%20dieses%20Inserat%20an%20$$$ViewLink$$$",
+        "data-ost-simple-hide" : "1",
       },
       components: `<div style="display:inline-block; text-align:center; width:28px; height:28px; font-size:28px; color:#293133;">
                     <i class="fa-solid fa-comment-sms"></i>
@@ -583,8 +589,8 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         "text-decoration": "none",
       },
       attributes: {
-        "data-ost-simple-hide" : "1",
         href: "javascript:if(window.print)window.print()",
+        "data-ost-simple-hide" : "1",
       },
       components: `<div style="display:inline-block; text-align:center; width:28px; height:28px; font-size:28px; color:#293133;">
                     <i class="fa-solid fa-print"></i>
