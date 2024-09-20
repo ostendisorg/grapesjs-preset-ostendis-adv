@@ -165,20 +165,22 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
 
   // Header component
   DomComponents.addType("header", {
-      isComponent: (el) => {
-        const headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
-        if (el.tagName && headings.includes(el.tagName.toLowerCase())) {
-          return { type: "header"};
-        }
-      },
-      extend: "text",
-      model: {
-        defaults: {
-          tagName: "h1", //Default
-          traits: ["id", headerTrait(opts), ostTypeTextTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
-        },
+    isComponent: (el) => {
+      const headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
+      if (el.tagName && headings.includes(el.tagName.toLowerCase())) {
+        console.log("Tag: ", el.tagName);
+        console.log("Inner: ", el.innerHTML);
+        return { type: "header"};
       }
-    });
+    },
+    extend: "text",
+    model: {
+      defaults: {
+        tagName: "h1", //Default
+        traits: ["id", headerTrait(opts), ostTypeTextTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
+      },
+    }
+  });
 
   // Icon component
   DomComponents.addType("icon", {
