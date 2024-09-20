@@ -67,7 +67,7 @@ $ git clone https://github.com/ostendisorg/grapesjs-preset-ostendis-adv.git
 $ cd grapesjs-preset-ostendis
 ```
 
-Install dependencies
+Install dependencies (use Node version 18.x)
 
 ```sh
 $ npm i
