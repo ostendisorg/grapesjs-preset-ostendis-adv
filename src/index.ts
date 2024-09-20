@@ -38,9 +38,10 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
   loadCommands(editor, options);
   loadComponents(editor, options);
   loadTraits(editor, options);
+  loadRte(editor, options);
   loadBlocks(editor, options);
   loadPanels(editor, options);
-  await loadRte(editor, options);
+  
 
   // Beautify tooltips
   var titles = document.querySelectorAll("*[data-tooltip-pos]");
@@ -69,11 +70,10 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
       const headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
       if (tagName && headings.includes(tagName.toLowerCase()) && component.get('type') === 'text') {
         component.set({ type: 'header' });
-        console.log("traits: ",component.getTraits() );
         component.setTraits([{name: 'id'}, headerTrait(options), ostTypeTextTrait(options), ostTypeHideInSimpleHtmlTrait(options)]);
       }
       const children = component.components();
-      children.each(child => changeHeaderType(child));     
+      children.each(child => changeHeaderType(child));
     };
     const wrapper = editor.getWrapper();
     const components = wrapper?.components();
