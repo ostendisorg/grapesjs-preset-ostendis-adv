@@ -38,9 +38,9 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
   loadCommands(editor, options);
   loadComponents(editor, options);
   loadTraits(editor, options);
-  loadRte(editor, options);
   loadBlocks(editor, options);
   loadPanels(editor, options);
+  await loadRte(editor, options);
   
 
   // Beautify tooltips

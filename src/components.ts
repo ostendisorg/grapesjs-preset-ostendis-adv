@@ -168,8 +168,6 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
     isComponent: (el) => {
       const headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
       if (el.tagName && headings.includes(el.tagName.toLowerCase())) {
-        console.log("Tag: ", el.tagName);
-        console.log("Inner: ", el.innerHTML);
         return { type: "header"};
       }
     },
