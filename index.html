@@ -495,7 +495,16 @@
           height: "100%",
           storageManager: false,
           richTextEditor: {
-            actions: ["bold", "italic", "underline", "link"],
+            actions: [
+              'bold', 'italic', 'underline', 'link',
+              {
+                name: 'removeFormat',
+                icon: '<i class="fa-solid fa-text-slash"></i>',
+                attributes: { title: 'Remove Format'}, //opts.t9n.cmdRteRemoveFormat },
+                result: (rte) => {
+                  rte.exec('removeFormat', false, null);
+                }
+              }],
             onPaste: ({ ev, rte }) => {
               ev.preventDefault();
               const { clipboardData } = ev;
