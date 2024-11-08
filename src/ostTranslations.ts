@@ -4,6 +4,7 @@ export const ostTrans: OstTranslations = {
   cmdBtnDesktopLabel: "Desktop",
   cmdBtnTabletLabel: "Tablet",
   cmdBtnMobileLabel: "Mobile",
+  
   cmdBtnViewOstBlocks: "View Ostendis Blocks",
   cmdBtnViewCompLabel: "View components",
   cmdBtnImportLabel: "Import template",
