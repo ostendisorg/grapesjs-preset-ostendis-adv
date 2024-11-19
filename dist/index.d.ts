@@ -13,6 +13,11 @@ export interface PluginOptions {
 	 */
 	block?: (blockId: string) => {};
 	/**
+	 * Export command id.
+	 * @default 'gjs-open-export-template'
+	 */
+	cmdOpenExport?: string;
+	/**
 	 * Import command id.
 	 * @default 'gjs-open-import-template'
 	 */

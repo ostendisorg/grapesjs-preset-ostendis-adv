@@ -8,12 +8,12 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
 
   cmdm.add(opts.cmdInlineHtml, {
     run(editor, s, opts = {}) {
-      const tmp = editor.getHtml() + `<style>${editor.getCss()}</style>`;
-      return juice(tmp, { ...opts.juiceOpts, ...opts });
+      const tmpl = editor.getHtml() + `<style>${editor.getCss()}</style>`;
+      return juice(tmpl, { ...opts.juiceOpts, ...opts });
     },
   });
 
-  cmdm.add("export-template", {
+  cmdm.add(opts.cmdOpenExport, {
     containerEl: null as HTMLDivElement | null,
     codeEditorHtml: null as HTMLDivElement | null,
 
@@ -78,8 +78,10 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       });
 
       if (codeEditorHtml) {
-        const tmp = `${editor.getHtml()}<style>${editor.getCss()}</style>`;
-        codeEditorHtml.setContent(opts.inlineCss ? juice(tmp, opts.juiceOpts) : tmp);
+        const tmpl = `${editor.getHtml()}<style>${editor.getCss()}</style>`;
+        codeEditorHtml.setContent(
+          opts.inlineCss ? juice(tmpl, opts.juiceOpts) : tmpl
+        );
         codeEditorHtml.editor.refresh();
       }
     },

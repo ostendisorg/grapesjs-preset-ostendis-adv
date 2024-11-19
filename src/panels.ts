@@ -4,8 +4,7 @@ import { cmdDeviceDesktop, cmdDeviceMobile, cmdDeviceTablet } from "./consts";
 
 export default (editor: Editor, opts: Required<PluginOptions>) => {
   const { Panels } = editor;
-  const { cmdOpenImport } = opts;
-  const openExport = "export-template";
+  const { cmdOpenImport, cmdOpenExport } = opts;
   const openStyleManager = "open-sm";
   const openTraits = "open-tm";
   const openLayers = "open-layers";
@@ -78,9 +77,8 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           },
         },
         {
-          id: openExport,
-          command: openExport,
-          
+          id: cmdOpenExport,
+          command: cmdOpenExport,
           attributes: {
             "data-tooltip": opts.t9n.cmdBtnExportLabel,
             "data-tooltip-pos": "bottom",

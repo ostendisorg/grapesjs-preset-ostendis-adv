@@ -7,11 +7,18 @@ import loadComponents from "./components";
 import loadRte from "./rte";
 import PluginOptions from "./pluginOptions";
 import { ostTrans } from "./ostTranslations";
-import { headerTrait, ostTypeTextTrait, ostTypeHideInSimpleHtmlTrait } from "./consts";
+import {
+  headerTrait,
+  ostTypeTextTrait,
+  ostTypeHideInSimpleHtmlTrait,
+} from "./consts";
 
 export type RequiredPluginOptions = Required<PluginOptions>;
 
-const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions> = {}) => {
+const plugin: Plugin<PluginOptions> = async (
+  editor,
+  opts: Partial<PluginOptions> = {}
+) => {
   let config = editor.getConfig();
 
   const options: RequiredPluginOptions = {
@@ -19,6 +26,7 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
     block: () => ({}),
     juiceOpts: {},
     usedOstBlocks: [],
+    cmdOpenExport: "gjs-open-export-template",
     cmdOpenImport: "gjs-open-import-template",
     cmdInlineHtml: "gjs-get-inlined-html",
     codeViewerTheme: "hopscotch",
@@ -41,7 +49,6 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
   loadBlocks(editor, options);
   loadPanels(editor, options);
   await loadRte(editor, options);
-  
 
   // Beautify tooltips
   var titles = document.querySelectorAll("*[data-tooltip-pos]");
@@ -65,19 +72,28 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
 
     // Change all elements with header tags from type text to header
     const changeHeaderType = (component: Component): void => {
-      const tagName = component.get('tagName');
-  
+      const tagName = component.get("tagName");
+
       const headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
-      if (tagName && headings.includes(tagName.toLowerCase()) && component.get('type') === 'text') {
-        component.set({ type: 'header' });
-        component.setTraits([{name: 'id'}, headerTrait(options), ostTypeTextTrait(options), ostTypeHideInSimpleHtmlTrait(options)]);
+      if (
+        tagName &&
+        headings.includes(tagName.toLowerCase()) &&
+        component.get("type") === "text"
+      ) {
+        component.set({ type: "header" });
+        component.setTraits([
+          { name: "id" },
+          headerTrait(options),
+          ostTypeTextTrait(options),
+          ostTypeHideInSimpleHtmlTrait(options),
+        ]);
       }
       const children = component.components();
-      children.each(child => changeHeaderType(child));
+      children.each((child) => changeHeaderType(child));
     };
     const wrapper = editor.getWrapper();
     const components = wrapper?.components();
-    components?.each(component => changeHeaderType(component));
+    components?.each((component) => changeHeaderType(component));
   });
 
   // On selected components
@@ -85,7 +101,11 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
     let selected = editor.getSelected();
 
     if (selected != undefined) {
-      selected.addAttributes({ draggable: "false", removable: "false", copyable: "false" });
+      selected.addAttributes({
+        draggable: "false",
+        removable: "false",
+        copyable: "false",
+      });
 
       if (selected.is("ulistitem")) {
         showOstToolbar(selected);
@@ -95,7 +115,9 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
         //If list element is empty replace with placeholder text (M&E case:)
         if (selected.components().length == 0) {
           var selectedPosition = selected.index();
-          var newComponent = selected.parent()?.append("<li>Text</li>", { at: selectedPosition });
+          var newComponent = selected
+            .parent()
+            ?.append("<li>Text</li>", { at: selectedPosition });
           selected.remove();
           editor.select(newComponent);
           selected = editor.getSelected();
@@ -131,7 +153,8 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
 
       // Add clone button
       const cBtn = document.createElement("div");
-      cBtn.innerHTML = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a9 9 0 0 0 0 18 9 9 0 0 0 0-18zm-1.3 3.88h2.6v3.82h3.82v2.6H13.3v3.82h-2.6V13.3H6.88v-2.6h3.82z"/></svg>';
+      cBtn.innerHTML =
+        '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a9 9 0 0 0 0 18 9 9 0 0 0 0-18zm-1.3 3.88h2.6v3.82h3.82v2.6H13.3v3.82h-2.6V13.3H6.88v-2.6h3.82z"/></svg>';
       cBtn.classList.add("gjs-ost-toolbar-item", "clone");
       cBtn.title = options.t9n.ostToolbarClone;
       cBtn.addEventListener("click", () => {
@@ -141,7 +164,8 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
 
       //Add delete button
       const dBtn = document.createElement("div");
-      dBtn.innerHTML = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm5.12 7.7v2.6H6.88v-2.6z"/></svg>';
+      dBtn.innerHTML =
+        '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm5.12 7.7v2.6H6.88v-2.6z"/></svg>';
       dBtn.title = options.t9n.ostToolbarDelete;
       dBtn.classList.add("gjs-ost-toolbar-item", "del");
       if (elLast != 0) {
@@ -156,7 +180,8 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
 
       // Add move up button
       const upBtn = document.createElement("div");
-      upBtn.innerHTML = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M1.9 20.75 12 3.25l10.1 17.5Z"/></svg>';
+      upBtn.innerHTML =
+        '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M1.9 20.75 12 3.25l10.1 17.5Z"/></svg>';
       upBtn.title = options.t9n.ostToolbarUp;
       upBtn.classList.add("gjs-ost-toolbar-item", "up");
       if (elPos > 0) {
@@ -177,7 +202,8 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
 
       // Add move down button
       const dwnBtn = document.createElement("div");
-      dwnBtn.innerHTML = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M22.4 3.25 12 20.75 1.6 3.25Z"/></svg>';
+      dwnBtn.innerHTML =
+        '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M22.4 3.25 12 20.75 1.6 3.25Z"/></svg>';
       dwnBtn.title = options.t9n.ostToolbarDown;
       dwnBtn.classList.add("gjs-ost-toolbar-item", "down");
       if (elPos != elLast) {
@@ -220,8 +246,14 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
         removable: true,
         copyable: true,
         toolbar: [
-          { attributes: { class: "fa-solid fa-arrow-up" }, command: "select-parent" },
-          { attributes: { class: "fa-solid fa-arrows-up-down-left-right" }, command: "tlb-move" },
+          {
+            attributes: { class: "fa-solid fa-arrow-up" },
+            command: "select-parent",
+          },
+          {
+            attributes: { class: "fa-solid fa-arrows-up-down-left-right" },
+            command: "tlb-move",
+          },
           { attributes: { class: "fa-regular fa-copy" }, command: "tlb-clone" },
           { attributes: { class: "fa-solid fa-trash" }, command: "tlb-delete" },
         ],
