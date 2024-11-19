@@ -48,7 +48,10 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
   Blocks.add("applyButton", {
     label: opts.t9n.buttonApplyBlkLabel,
     category: opts.t9n.categoryLabel,
-    content: `<a data-gjs-type="link" href="$$$ApplyLink$$$" target="_blank" role="button" style="` + btnStyle + `">${opts.t9n.buttonApplyBlkText}</a>`,
+    content:
+      `<a data-gjs-type="link" href="$$$ApplyLink$$$" target="_blank" role="button" style="` +
+      btnStyle +
+      `">${opts.t9n.buttonApplyBlkText}</a>`,
     media: `<svg style="width:54px" viewBox="0 0 12.7 9.525" xmlns="http://www.w3.org/2000/svg">
           <path fill="currentColor" d="m0.87695 1.1856c-0.46379 0-0.87695 0.3355-0.87695 0.7891v3.2851c0 0.4536 0.41316 0.7891 0.87695 0.7891h5.3676v1.7446c0 0.12334 0.099882 0.22273 0.22221 0.22273 0.063691 0 0.12549-0.027437 0.16795-0.075964l0.83509-0.9555 0.58704 1.1762c0.079866 0.15973 0.27435 0.22404 0.43408 0.14418 0.15973-0.079866 0.22404-0.27383 0.14418-0.43357l-0.57309-1.1493h1.1942c0.12334 0 0.22324-0.10042 0.22324-0.22376 0-0.063691-0.027421-0.12394-0.074931-0.1664l-0.31884-0.28319h2.7363c0.46379 0 0.87695-0.3355 0.87695-0.7891v-3.2851c0-0.4536-0.41316-0.7891-0.87695-0.7891zm0 0.48214h10.945c0.2413 0 0.39688 0.15381 0.39688 0.30696v3.2851c0 0.15315-0.15557 0.30644-0.39688 0.30644h-3.2789l-1.9084-1.696c-0.043471-0.038418-0.09792-0.059945-0.15555-0.059945-0.1294 0-0.23461 0.10521-0.23461 0.23461v1.5214h-5.3676c-0.2413 0-0.39429-0.15329-0.39429-0.30644v-3.2851c0-0.15315 0.15299-0.30696 0.39429-0.30696z"/>
         </svg>`,
@@ -57,7 +60,10 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
   Blocks.add("button", {
     label: opts.t9n.buttonBlkLabel,
     category: opts.t9n.categoryLabel,
-    content: `<a data-gjs-type="link" role="button" style="` + btnStyle + `">Button</a>`,
+    content:
+      `<a data-gjs-type="link" role="button" style="` +
+      btnStyle +
+      `">Button</a>`,
     media: `<svg style="width:54px" viewBox="0 0 12.7 9.525" xmlns="http://www.w3.org/2000/svg">
           <path fill="currentColor" d="m0.87695 1.1856c-0.46379 0-0.87695 0.3355-0.87695 0.7891v3.2851c0 0.4536 0.41316 0.7891 0.87695 0.7891h5.3676v1.7446c0 0.12334 0.099882 0.22273 0.22221 0.22273 0.063691 0 0.12549-0.027437 0.16795-0.075964l0.83509-0.9555 0.58704 1.1762c0.079866 0.15973 0.27435 0.22404 0.43408 0.14418 0.15973-0.079866 0.22404-0.27383 0.14418-0.43357l-0.57309-1.1493h1.1942c0.12334 0 0.22324-0.10042 0.22324-0.22376 0-0.063691-0.027421-0.12394-0.074931-0.1664l-0.31884-0.28319h2.7363c0.46379 0 0.87695-0.3355 0.87695-0.7891v-3.2851c0-0.4536-0.41316-0.7891-0.87695-0.7891zm0 0.48214h10.945c0.2413 0 0.39688 0.15381 0.39688 0.30696v3.2851c0 0.15315-0.15557 0.30644-0.39688 0.30644h-3.2789l-1.9084-1.696c-0.043471-0.038418-0.09792-0.059945-0.15555-0.059945-0.1294 0-0.23461 0.10521-0.23461 0.23461v1.5214h-5.3676c-0.2413 0-0.39429-0.15329-0.39429-0.30644v-3.2851c0-0.15315 0.15299-0.30696 0.39429-0.30696z"/>
         </svg>`,
@@ -67,8 +73,8 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
     label: opts.t9n.headerBlkLabel,
     category: opts.t9n.categoryLabel,
     media: `<svg style="width:60px;" viewBox="0 0 12.7 9.525" xmlns="http://www.w3.org/2000/svg">
-<path fill="currentColor" d="m8.4664 2.3913 0.3777 1.3753-0.31258 0.082201c-0.14652-0.27506-0.2963-0.55011-0.46886-0.68922-0.17257-0.13595-0.37444-0.13595-0.57306-0.13595h-0.814v3.3196c0 0.15808 0 0.31616 0.10745 0.3952 0.1107 0.079039 0.3256 0.079039 0.54375 0.079039v0.31616h-1.9536v-0.31616c0.21815 0 0.43305 0 0.54375-0.07904 0.10745-0.079039 0.10745-0.23712 0.10745-0.3952v-3.3196h-0.814c-0.19862 0-0.40049 0-0.57306 0.13595-0.17257 0.13911-0.32234 0.41417-0.46886 0.68922l-0.31258-0.082201 0.3777-1.3753z" stroke-width=".32084"/>
-</svg>`,
+        <path fill="currentColor" d="m8.4664 2.3913 0.3777 1.3753-0.31258 0.082201c-0.14652-0.27506-0.2963-0.55011-0.46886-0.68922-0.17257-0.13595-0.37444-0.13595-0.57306-0.13595h-0.814v3.3196c0 0.15808 0 0.31616 0.10745 0.3952 0.1107 0.079039 0.3256 0.079039 0.54375 0.079039v0.31616h-1.9536v-0.31616c0.21815 0 0.43305 0 0.54375-0.07904 0.10745-0.079039 0.10745-0.23712 0.10745-0.3952v-3.3196h-0.814c-0.19862 0-0.40049 0-0.57306 0.13595-0.17257 0.13911-0.32234 0.41417-0.46886 0.68922l-0.31258-0.082201 0.3777-1.3753z" stroke-width=".32084"/>
+    </svg>`,
     content: {
       type: "header",
       content: "Title",
@@ -107,11 +113,13 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         <path fill="currentColor" d="m1.8299 1.9461v1.0583h8.1695v-1.0583h-8.1695zm0 2.0412v0.52917h9.0403v-0.52917h-9.0403zm0 1.0211v0.52917h7.2135v-0.52917h-7.2135zm0 1.0206v0.52917h9.0403v-0.52917h-9.0403zm0 1.0206v0.52917h7.2135v-0.52917h-7.2135z" stroke-width=".3322"/>
         </svg>`,
     content: [
-      { tagname: "div", components:[
+      {
+        tagname: "div",
+        components: [
           `<h3>Title</h3>`,
-          {tagname: "div",components:[ {type: "text", content: "Text"} ] },
-        ]
-      }
+          { tagname: "div", components: [{ type: "text", content: "Text" }] },
+        ],
+      },
     ],
   });
 
@@ -131,11 +139,13 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         <path fill="currentColor" d="m1.8299 2.1854v1.0583h8.1623v-1.0583h-8.1623zm0.55604 2.0479a0.52917 0.52917 0 0 0-0.52917 0.52917 0.52917 0.52917 0 0 0 0.52917 0.52917 0.52917 0.52917 0 0 0 0.52917-0.52917 0.52917 0.52917 0 0 0-0.52917-0.52917zm1.2707 0.26458v0.52917h7.2135v-0.52917h-7.2135zm-1.2707 1.7766a0.52917 0.52917 0 0 0-0.52917 0.52917 0.52917 0.52917 0 0 0 0.52917 0.52917 0.52917 0.52917 0 0 0 0.52917-0.52917 0.52917 0.52917 0 0 0-0.52917-0.52917zm1.2707 0.26458v0.52917h7.2135v-0.52917h-7.2135z"/>
       </svg>`,
     content: [
-      { tagname: "div", components:[
+      {
+        tagname: "div",
+        components: [
           `<h3>Title</h3>`,
-          {tagname: "div",components:[{type: "ulist"}]},
-        ]
-      }
+          { tagname: "div", components: [{ type: "ulist" }] },
+        ],
+      },
     ],
   });
 
@@ -432,7 +442,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       attributes: {
         href: "https://www.facebook.com/sharer/sharer.php?u=$$$ViewLink$$$",
         target: "_blank",
-        "data-ost-simple-hide" : "1",
+        "data-ost-simple-hide": "1",
       },
       components: `<div style="border: 2px solid #293133; border-radius: 3px; display:flex; justify-content: space-around; align-items: center; text-align:center; width:60px; height:28px; font-size:21px; color:#293133;">
                     <i class="fa-solid fa-share"></i>
@@ -455,7 +465,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       attributes: {
         href: "https://www.linkedin.com/shareArticle?mini=true&url=$$$ViewLink$$$",
         target: "_blank",
-        "data-ost-simple-hide" : "1",
+        "data-ost-simple-hide": "1",
       },
       components: `<div style="border: 2px solid #293133; border-radius: 3px; display:flex; justify-content: space-around; align-items: center; text-align:center; width:60px; height:28px; font-size:21px; color:#293133;">
                     <i class="fa-solid fa-share"></i>
@@ -478,7 +488,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       attributes: {
         href: "https://www.xing.com/spi/shares/new?url=$$$ViewLink$$$",
         target: "_blank",
-        "data-ost-simple-hide" : "1",
+        "data-ost-simple-hide": "1",
       },
       components: `<div style="border: 2px solid #293133; border-radius: 3px; display:flex; justify-content: space-around; align-items: center; text-align:center; width:60px; height:28px; font-size:21px; color:#293133;">
                     <i class="fa-solid fa-share"></i>
@@ -501,7 +511,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       attributes: {
         href: "https://twitter.com/intent/tweet?url=$$$ViewLink$$$&text=",
         target: "_blank",
-        "data-ost-simple-hide" : "1",
+        "data-ost-simple-hide": "1",
       },
       components: `<div style="border: 2px solid #293133; border-radius: 3px; display:flex; justify-content: space-around; align-items: center; text-align:center; width:60px; height:28px; font-size:21px; color:#293133;">
                     <i class="fa-solid fa-share"></i>
@@ -522,7 +532,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         "text-decoration": "none",
       },
       attributes: {
-        "data-ost-simple-hide" : "1",
+        "data-ost-simple-hide": "1",
         href: "https://wa.me/?text=$$$ViewLink$$$",
         target: "_blank",
       },
@@ -548,7 +558,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       attributes: {
         href: "mailto:example@mail.com?subject=Sieh%20dir%20dieses%20Inserat%20an&body=$$$ViewLink$$$",
         target: "_blank",
-        "data-ost-simple-hide" : "1",
+        "data-ost-simple-hide": "1",
       },
       components: `<div style="display:inline-block; text-align:center; width:28px; height:28px; font-size:28px; color:#293133;">
                     <i class="fa-solid fa-envelope"></i>
@@ -569,7 +579,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       },
       attributes: {
         href: "sms:?body=Sieh%20dir%20dieses%20Inserat%20an%20$$$ViewLink$$$",
-        "data-ost-simple-hide" : "1",
+        "data-ost-simple-hide": "1",
       },
       components: `<div style="display:inline-block; text-align:center; width:28px; height:28px; font-size:28px; color:#293133;">
                     <i class="fa-solid fa-comment-sms"></i>
@@ -590,7 +600,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       },
       attributes: {
         href: "javascript:if(window.print)window.print()",
-        "data-ost-simple-hide" : "1",
+        "data-ost-simple-hide": "1",
       },
       components: `<div style="display:inline-block; text-align:center; width:28px; height:28px; font-size:28px; color:#293133;">
                     <i class="fa-solid fa-print"></i>
