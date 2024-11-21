@@ -112,10 +112,9 @@ const plugin: Plugin<PluginOptions> = async (
       } else if (selected.isChildOf("ulistitem")) {
         showOstToolbar(selected.closestType("ulistitem"));
       } else if (selected.getEl()?.tagName === "LI") {
-        // If list element is empty replace with placeholder text (M&E case:)
-        console.log("Textlengt: ",selected.components().length);
-        console.log(selected.components());
-        if (selected.components().length == 0) {
+        // If list element is empty replace with placeholder text (M&E case:) 
+        // console.log("hasChildren: ",selected.components().length, " | hasText: ",selected.get('content'));
+        if (selected.components().length === 0 && !selected.get('content') ) {
           var selectedPosition = selected.index();
           var newComponent = selected.parent()?.append("<li>Text</li>", { at: selectedPosition });
           selected.remove();
