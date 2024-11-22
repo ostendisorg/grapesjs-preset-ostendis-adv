@@ -112,10 +112,12 @@ const plugin: Plugin<PluginOptions> = async (
       } else if (selected.isChildOf("ulistitem")) {
         showOstToolbar(selected.closestType("ulistitem"));
       } else if (selected.getEl()?.tagName === "LI") {
-        // If list element is empty replace with placeholder text (M&E case:) 
-        if (selected.components().length === 0 && !selected.get('content') ) {
+        // If list element is empty replace with placeholder text (M&E case:)
+        if (selected.components().length === 0 && !selected.get("content")) {
           var selectedPosition = selected.index();
-          var newComponent = selected.parent()?.append("<li>Text</li>", { at: selectedPosition });
+          var newComponent = selected
+            .parent()
+            ?.append("<li>Text</li>", { at: selectedPosition });
           selected.remove();
           editor.select(newComponent);
           selected = editor.getSelected();
