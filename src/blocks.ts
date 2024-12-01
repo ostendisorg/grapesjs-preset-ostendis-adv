@@ -25,7 +25,10 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       type: "image",
       editable: false,
       droppable: true,
-      attributes: { src: "$$$ApplyQrCode$$$", alt: "Apply link QR code" },
+      attributes: {
+        src: "$$$ApplyQrCode$$$",
+        alt: "Apply link QR code",
+      },
     },
   });
 
@@ -39,7 +42,10 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       type: "image",
       editable: false,
       droppable: true,
-      attributes: { src: "$$$ViewQrCode$$$", alt: "View link QR code" },
+      attributes: {
+        src: "$$$ViewQrCode$$$",
+        alt: "View link QR code",
+      },
     },
   });
 

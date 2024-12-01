@@ -7,9 +7,11 @@
 .gjs-selected[data-ost-type]:not([data-ost-type=""]) {
   outline-color: #ff8200 !important;
 }
+
 .gjs-dashed *[data-ost-type]:not([data-ost-type=""]) {
   outline: dashed 1px #ff8200;
 }
+
 .gjs-dashed img[data-ost-type]:not([data-ost-type=""]),
 .gjs-dashed [data-ost-type="videoURL"] {
   outline: dashed 1px #ff8200 !important;
@@ -23,11 +25,13 @@
   position: relative;
   min-height: 20px !important;
 }
+
 .show-ost-blocks .gjs-selected[data-ost-type]:not([data-ost-type=""]) {
   outline: solid 2px #ff8200 !important;
   position: relative;
   min-height: 20px !important;
 }
+
 .show-ost-blocks *[data-ost-type]:not([data-ost-type=""])::before {
   content: "Block: " attr(data-ost-type);
   position: absolute;
@@ -49,6 +53,7 @@
   position: relative;
   opacity: 0.4;
 }
+
 .show-ost-blocks *[data-ost-simple-hide="1"]::before {
   content: "Hidden";
   position: absolute;

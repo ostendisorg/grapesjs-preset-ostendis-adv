@@ -4,7 +4,7 @@ export const ostTrans: OstTranslations = {
   cmdBtnDesktopLabel: "Desktop",
   cmdBtnTabletLabel: "Tablet",
   cmdBtnMobileLabel: "Mobile",
-  
+
   cmdBtnViewOstBlocks: "View Ostendis Blocks",
   cmdBtnViewCompLabel: "View components",
   cmdBtnImportLabel: "Import template",
@@ -69,8 +69,8 @@ export const ostTrans: OstTranslations = {
   smsBlkLabel: "SMS to",
   printBlkLabel: "Print",
 
-  traitBlkValue: "Value",  
-  
+  traitBlkValue: "Value",
+
   traitHeaderLabel: "Header Level",
   traitHeaderSelectH1: "H1 (highest)",
   traitHeaderSelectH2: "H2",
@@ -78,7 +78,7 @@ export const ostTrans: OstTranslations = {
   traitHeaderSelectH4: "H4",
   traitHeaderSelectH5: "H5",
   traitHeaderSelectH6: "H6 (lowest)",
-  
+
   traitBlkOstendisTooltip: "Define Ostendis block.",
   traitOstNone: "None",
   traitOstOrganizationHeading: "Organization Heading",
