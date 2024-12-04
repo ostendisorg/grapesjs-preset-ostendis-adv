@@ -1,6 +1,16 @@
 import type { Editor } from "grapesjs";
 import PluginOptions from "./pluginOptions";
-import { uListItemContent, ulListItem, ostTypeTextTrait, ostTypeImageTrait, ostTypeHideInSimpleHtmlTrait, headerTrait, iconTrait, nameTrait, valueTrait } from "./consts";
+import {
+  uListItemContent,
+  ulListItem,
+  ostTypeTextTrait,
+  ostTypeImageTrait,
+  ostTypeHideInSimpleHtmlTrait,
+  headerTrait,
+  iconTrait,
+  nameTrait,
+  valueTrait,
+} from "./consts";
 
 export default (editor: Editor, opts: Required<PluginOptions>) => {
   const { DomComponents } = editor;
@@ -58,8 +68,20 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
     model: {
       defaults: {
         tagName: "div",
-        attributes: { class: "scale", "data-percent": "66", "data-fcolor": "#3b5998", "data-bgcolor": "#CCCCCC" },
-        style: { "box-sizing": "border-box", padding: "0", height: "20px", "max-width": "100%", border: "0px solid #666666", background: "linear-gradient(to right,#3b5998 66%, #CCCCCC 66%);" },
+        attributes: {
+          class: "scale",
+          "data-percent": "66",
+          "data-fcolor": "#3b5998",
+          "data-bgcolor": "#CCCCCC",
+        },
+        style: {
+          "box-sizing": "border-box",
+          padding: "0",
+          height: "20px",
+          "max-width": "100%",
+          border: "0px solid #666666",
+          background: "linear-gradient(to right,#3b5998 66%, #CCCCCC 66%);",
+        },
         traits: [
           {
             name: "percent",
@@ -100,8 +122,23 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
         var p = this.get("percent");
         var b = this.get("bgcolor");
         var f = this.get("fcolor");
-        this.set("attributes", { "data-percent": p, "data-bgcolor": b, "data-fcolor": f });
-        this.addStyle({ background: "linear-gradient(to right, " + f + " " + p + "%, " + b + " " + p + "%)" });
+        this.set("attributes", {
+          "data-percent": p,
+          "data-bgcolor": b,
+          "data-fcolor": f,
+        });
+        this.addStyle({
+          background:
+            "linear-gradient(to right, " +
+            f +
+            " " +
+            p +
+            "%, " +
+            b +
+            " " +
+            p +
+            "%)",
+        });
       },
     },
   });
@@ -156,9 +193,17 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       defaults: {
         tagName: "ul",
         attributes: { class: "ulist fa-ul" },
-        style: { padding: "0.2em 0", "margin-left": "2em", "line-height": "1.4em" },
+        style: {
+          padding: "0.2em 0",
+          "margin-left": "2em",
+          "line-height": "1.4em",
+        },
         components: ulListItem + ulListItem + ulListItem,
-        traits: ["id", ostTypeTextTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
+        traits: [
+          "id",
+          ostTypeTextTrait(opts),
+          ostTypeHideInSimpleHtmlTrait(opts),
+        ],
       },
     },
   });
@@ -168,23 +213,39 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
     isComponent: (el) => {
       const headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
       if (el.tagName && headings.includes(el.tagName.toLowerCase())) {
-        return { type: "header"};
+        return { type: "header" };
       }
     },
     extend: "text",
     model: {
       defaults: {
         tagName: "h1", //Default
-        traits: ["id", headerTrait(opts), ostTypeTextTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
+        traits: [
+          "id",
+          headerTrait(opts),
+          ostTypeTextTrait(opts),
+          ostTypeHideInSimpleHtmlTrait(opts),
+        ],
       },
-    }
+    },
   });
 
   // Icon component
   DomComponents.addType("icon", {
     isComponent: (el) => {
-      var classNames = ["fa", "fas", "far", "fab", "fa-solid", "fa-regular", "fa-brands"];
-      if (el.tagName === "I" && classNames.some((className) => el.classList.contains(className))) {
+      var classNames = [
+        "fa",
+        "fas",
+        "far",
+        "fab",
+        "fa-solid",
+        "fa-regular",
+        "fa-brands",
+      ];
+      if (
+        el.tagName === "I" &&
+        classNames.some((className) => el.classList.contains(className))
+      ) {
         return { type: "icon" };
       }
     },
@@ -201,7 +262,11 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
   DomComponents.addType("table", {
     model: {
       defaults: {
-        traits: ["id", ostTypeTextTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
+        traits: [
+          "id",
+          ostTypeTextTrait(opts),
+          ostTypeHideInSimpleHtmlTrait(opts),
+        ],
       },
     },
   });
@@ -210,7 +275,13 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
   DomComponents.addType("link", {
     model: {
       defaults: {
-        traits: ["id", "href", "target", ostTypeTextTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
+        traits: [
+          "id",
+          "href",
+          "target",
+          ostTypeTextTrait(opts),
+          ostTypeHideInSimpleHtmlTrait(opts),
+        ],
       },
     },
   });
@@ -219,7 +290,12 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
   DomComponents.addType("image", {
     model: {
       defaults: {
-        traits: ["alt", ostTypeImageTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
+        traits: [
+          "id",
+          "alt",
+          ostTypeImageTrait(opts),
+          ostTypeHideInSimpleHtmlTrait(opts),
+        ],
       },
     },
   });
@@ -228,7 +304,11 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
   DomComponents.addType("textnode", {
     model: {
       defaults: {
-        traits: ["id", ostTypeTextTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
+        traits: [
+          "id",
+          ostTypeTextTrait(opts),
+          ostTypeHideInSimpleHtmlTrait(opts),
+        ],
       },
     },
   });
@@ -237,7 +317,11 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
   DomComponents.addType("text", {
     model: {
       defaults: {
-        traits: ["id", ostTypeTextTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
+        traits: [
+          "id",
+          ostTypeTextTrait(opts),
+          ostTypeHideInSimpleHtmlTrait(opts),
+        ],
       },
     },
   });
@@ -246,7 +330,11 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
   DomComponents.addType("default", {
     model: {
       defaults: {
-        traits: ["id", ostTypeTextTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
+        traits: [
+          "id",
+          ostTypeTextTrait(opts),
+          ostTypeHideInSimpleHtmlTrait(opts),
+        ],
       },
     },
   });
