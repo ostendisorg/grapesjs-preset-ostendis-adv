@@ -20,7 +20,10 @@ export const uListItemContent = `
     </span>
     <p style="margin:0;padding:0;text-align:left;">Text</p>`;
 
-export const ulListItem = `<li style="text-align:left" data-gjs-type="ulistitem">` + uListItemContent + `</li>`;
+export const ulListItem =
+  `<li style="text-align:left" data-gjs-type="ulistitem">` +
+  uListItemContent +
+  `</li>`;
 
 // Define ostendis type trait for text and default components
 export function ostTypeTextTrait(opts: Required<PluginOptions>) {
@@ -80,14 +83,14 @@ export function ostTypeImageTrait(opts: Required<PluginOptions>) {
 // Define ostendis type "hide in simple html"
 export function ostTypeHideInSimpleHtmlTrait(opts: Required<PluginOptions>) {
   return {
-    type: 'checkbox',
+    type: "checkbox",
     label: opts.t9n.hideInSimpleHtmlLabel,
-    name: 'data-ost-simple-hide',
-    valueTrue: '1',
-    valueFalse: '',
+    name: "data-ost-simple-hide",
+    valueTrue: "1",
+    valueFalse: "",
     attributes: {
-      'data-tooltip': opts.t9n.hideInSimpleHtmlTooltip,
-      'data-tooltip-pos': 'bottom',
+      "data-tooltip": opts.t9n.hideInSimpleHtmlTooltip,
+      "data-tooltip-pos": "bottom",
     },
   };
 }
@@ -98,12 +101,12 @@ export function headerTrait(opts: Required<PluginOptions>) {
     name: "tagName",
     label: opts.t9n.traitHeaderLabel,
     options: [
-      { id: "h1", value:"h1", name: opts.t9n.traitHeaderSelectH1 },
-      { id: "h2", value:"h2", name: opts.t9n.traitHeaderSelectH2 },
-      { id: "h3", value:"h3", name: opts.t9n.traitHeaderSelectH3 },
-      { id: "h4", value:"h4", name: opts.t9n.traitHeaderSelectH4 },
-      { id: "h5", value:"h5", name: opts.t9n.traitHeaderSelectH5 },
-      { id: "h6", value:"h6", name: opts.t9n.traitHeaderSelectH6 },
+      { id: "h1", value: "h1", name: opts.t9n.traitHeaderSelectH1 },
+      { id: "h2", value: "h2", name: opts.t9n.traitHeaderSelectH2 },
+      { id: "h3", value: "h3", name: opts.t9n.traitHeaderSelectH3 },
+      { id: "h4", value: "h4", name: opts.t9n.traitHeaderSelectH4 },
+      { id: "h5", value: "h5", name: opts.t9n.traitHeaderSelectH5 },
+      { id: "h6", value: "h6", name: opts.t9n.traitHeaderSelectH6 },
     ],
     changeProp: true,
   };
