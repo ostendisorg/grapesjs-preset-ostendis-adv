@@ -57,7 +57,6 @@ const plugin: Plugin<PluginOptions> = async (
     var el = titles[i];
     var title = el.getAttribute("title");
     title = title ? title.trim() : "";
-    console.log("Beautify tooltips: ", title);
     if (!title) break;
     el.setAttribute("data-tooltip", title);
     el.setAttribute("title", "");
