@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>GrapesJS Ostendis Editor Advanced</title>
+    <title>Advanced GrapesJS Ostendis Editor</title>
 
     <link
       rel="stylesheet"
@@ -705,20 +705,7 @@
           height: "100%",
           storageManager: false,
           richTextEditor: {
-            actions: [
-              "bold",
-              "italic",
-              "underline",
-              "link",
-              {
-                name: "removeFormat",
-                icon: '<i class="fa-solid fa-text-slash"></i>',
-                attributes: { title: "Remove Format" }, //opts.t9n.cmdRteRemoveFormat },
-                result: (rte) => {
-                  rte.exec("removeFormat", false, null);
-                },
-              },
-            ],
+            actions: ["bold", "italic", "underline", "link"], // command removeFormate
             onPaste: ({ ev, rte }) => {
               ev.preventDefault();
               const { clipboardData } = ev;

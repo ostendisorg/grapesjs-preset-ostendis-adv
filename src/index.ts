@@ -43,9 +43,9 @@ const plugin: Plugin<PluginOptions> = async (
   // Change some config
   config.devicePreviewMode = true;
 
-  loadCommands(editor, options);
   loadComponents(editor, options);
   loadTraits(editor, options);
+  await loadCommands(editor, options);
   loadBlocks(editor, options);
   loadPanels(editor, options);
   await loadRte(editor, options);
@@ -57,6 +57,7 @@ const plugin: Plugin<PluginOptions> = async (
     var el = titles[i];
     var title = el.getAttribute("title");
     title = title ? title.trim() : "";
+    console.log("Beautify tooltips: ", title);
     if (!title) break;
     el.setAttribute("data-tooltip", title);
     el.setAttribute("title", "");
