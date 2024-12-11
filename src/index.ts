@@ -101,12 +101,6 @@ const plugin: Plugin<PluginOptions> = async (
     let selected = editor.getSelected();
 
     if (selected != undefined) {
-      selected.addAttributes({
-        draggable: "false",
-        removable: "false",
-        copyable: "false",
-      });
-
       if (selected.is("ulistitem")) {
         showOstToolbar(selected);
       } else if (selected.isChildOf("ulistitem")) {
