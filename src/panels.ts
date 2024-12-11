@@ -189,5 +189,13 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       const btn = Panels.getButton("views", openTraits);
       btn?.set("active", true);
     }
+    //Beautify tooltips
+    document.querySelectorAll("*[data-tooltip-pos]").forEach((el) => {
+      const title = el.getAttribute("title")?.trim();
+      if (title) {
+        el.setAttribute("data-tooltip", title);
+        el.removeAttribute("title");
+      }
+    });
   });
 };
