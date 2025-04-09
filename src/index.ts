@@ -125,6 +125,41 @@ const plugin: Plugin<PluginOptions> = async (
     return false;
   }
 
+  function cloneWithStyles(editor: any, component: any, insertAt: number) {
+    const css = editor.CssComposer;
+    const origToCloneMap: Map<string, string> = new Map();
+    const originalComponents = getAllComponentsRecursive(component);
+
+    const clonedComponent = component.clone();
+    const clonedComponents = getAllComponentsRecursive(clonedComponent);
+    originalComponents.forEach((orig, idx) => {
+      origToCloneMap.set(orig.getId(), clonedComponents[idx].getId());
+    });
+    origToCloneMap.forEach((newId, oldId) => {
+      const rule = css.getRule(`#${oldId}`);
+      const style = rule?.getStyle() || {};
+      if (Object.keys(style).length > 0) {
+        (css as any).addRules?.([
+          {
+            selectors: [`#${newId}`],
+            style: JSON.parse(JSON.stringify(style)),
+          },
+        ]);
+      }
+    });
+    component.parent()?.append(clonedComponent, { at: insertAt });
+
+    return clonedComponent;
+  }
+
+  function getAllComponentsRecursive(component: any): any[] {
+    const result = [component];
+    component.components().each((child: any) => {
+      result.push(...getAllComponentsRecursive(child));
+    });
+    return result;
+  }
+
   function showOstToolbar(listItem: Component | undefined) {
     var elPos = listItem?.index() || 0;
     var elLast = listItem?.parent()?.getLastChild().index();
@@ -141,22 +176,24 @@ const plugin: Plugin<PluginOptions> = async (
       cBtn.title = options.t9n.ostToolbarClone;
       cBtn.addEventListener("click", () => {
         if (!listItem || !editor) return;
-        // Get style
-        const origId = listItem.getId();
-        const rule = editor.CssComposer.getRule(`#${origId}`);
-        const origStyle = rule?.getStyle() || {};
-        const copiedStyle = JSON.parse(JSON.stringify(origStyle));
+        cloneWithStyles(editor, listItem, elPos + 1);
+        // -----------------------------------------------------------------------
+        // // Get style
+        // const origId = listItem.getId();
+        // const rule = editor.CssComposer.getRule(`#${origId}`);
+        // const origStyle = rule?.getStyle() || {};
+        // const copiedStyle = JSON.parse(JSON.stringify(origStyle));
 
-        const clonedItem = listItem.clone();
-        listItem.parent()?.append(clonedItem, { at: elPos + 1 });
-        const cloneId = clonedItem.getId();
-        // Set style
-        (editor.CssComposer as any).addRules([
-          {
-            selectors: [`#${cloneId}`],
-            style: copiedStyle,
-          },
-        ]);
+        // const clonedItem = listItem.clone();
+        // listItem.parent()?.append(clonedItem, { at: elPos + 1 });
+        // const cloneId = clonedItem.getId();
+        // // Set style
+        // (editor.CssComposer as any).addRules([
+        //   {
+        //     selectors: [`#${cloneId}`],
+        //     style: copiedStyle,
+        //   },
+        // ]);
         // -----------------------------------------------------------------------
         //listItem?.parent()?.append(listItem?.clone(), { at: elPos + 1 });
       });
