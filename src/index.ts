@@ -140,7 +140,25 @@ const plugin: Plugin<PluginOptions> = async (
       cBtn.classList.add("gjs-ost-toolbar-item", "clone");
       cBtn.title = options.t9n.ostToolbarClone;
       cBtn.addEventListener("click", () => {
-        listItem?.parent()?.append(listItem?.clone(), { at: elPos + 1 });
+        if (!listItem || !editor) return;
+        // Get style
+        const origId = listItem.getId();
+        const rule = editor.CssComposer.getRule(`#${origId}`);
+        const origStyle = rule?.getStyle() || {};
+        const copiedStyle = JSON.parse(JSON.stringify(origStyle));
+
+        const clonedItem = listItem.clone();
+        listItem.parent()?.append(clonedItem, { at: elPos + 1 });
+        const cloneId = clonedItem.getId();
+        // Set style
+        (editor.CssComposer as any).addRules([
+          {
+            selectors: [`#${cloneId}`],
+            style: copiedStyle,
+          },
+        ]);
+        // -----------------------------------------------------------------------
+        //listItem?.parent()?.append(listItem?.clone(), { at: elPos + 1 });
       });
       ostToolbar.appendChild(cBtn);
 
