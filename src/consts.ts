@@ -33,6 +33,7 @@ export const uListItemContent = [
     ],
   },
   {
+    type: "text",
     tagName: "p",
     content: "Text",
     style: { margin: "0", padding: "0", "text-align": "left" },
