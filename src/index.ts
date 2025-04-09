@@ -130,15 +130,25 @@ const plugin: Plugin<PluginOptions> = async (
     const origToCloneMap: Map<string, string> = new Map();
     const originalComponents = getAllComponentsRecursive(component);
 
+    const savedStyles: Record<string, any> = {};
+    originalComponents.forEach((comp) => {
+      const id = comp.getId();
+      const rule = css.getRule(`#${id}`);
+      if (rule) {
+        savedStyles[id] = { ...rule.getStyle() };
+      }
+    });
     const clonedComponent = component.clone();
     const clonedComponents = getAllComponentsRecursive(clonedComponent);
     originalComponents.forEach((orig, idx) => {
-      origToCloneMap.set(orig.getId(), clonedComponents[idx].getId());
+      const clone = clonedComponents[idx];
+      if (clone) {
+        origToCloneMap.set(orig.getId(), clone.getId());
+      }
     });
     origToCloneMap.forEach((newId, oldId) => {
-      const rule = css.getRule(`#${oldId}`);
-      const style = rule?.getStyle() || {};
-      if (Object.keys(style).length > 0) {
+      const style = savedStyles[oldId];
+      if (style && Object.keys(style).length > 0) {
         (css as any).addRules?.([
           {
             selectors: [`#${newId}`],
@@ -146,6 +156,13 @@ const plugin: Plugin<PluginOptions> = async (
           },
         ]);
       }
+    });
+    // Add style to original
+    Object.entries(savedStyles).forEach(([id, style]) => {
+      const rule =
+        css.getRule(`#${id}`) ||
+        css.add([{ selectors: [`#${id}`], style: {} }])[0];
+      rule.setStyle({ ...style });
     });
     component.parent()?.append(clonedComponent, { at: insertAt });
 
@@ -177,25 +194,6 @@ const plugin: Plugin<PluginOptions> = async (
       cBtn.addEventListener("click", () => {
         if (!listItem || !editor) return;
         cloneWithStyles(editor, listItem, elPos + 1);
-        // -----------------------------------------------------------------------
-        // // Get style
-        // const origId = listItem.getId();
-        // const rule = editor.CssComposer.getRule(`#${origId}`);
-        // const origStyle = rule?.getStyle() || {};
-        // const copiedStyle = JSON.parse(JSON.stringify(origStyle));
-
-        // const clonedItem = listItem.clone();
-        // listItem.parent()?.append(clonedItem, { at: elPos + 1 });
-        // const cloneId = clonedItem.getId();
-        // // Set style
-        // (editor.CssComposer as any).addRules([
-        //   {
-        //     selectors: [`#${cloneId}`],
-        //     style: copiedStyle,
-        //   },
-        // ]);
-        // -----------------------------------------------------------------------
-        //listItem?.parent()?.append(listItem?.clone(), { at: elPos + 1 });
       });
       ostToolbar.appendChild(cBtn);
 
