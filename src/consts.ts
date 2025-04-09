@@ -14,16 +14,38 @@ export const valueTrait = {
   label: ostTrans.traitBlkValue,
 };
 
-export const uListItemContent = `
-    <span class="fa-li" style="left:-2em;width:2em;">
-      <i class="fas fa-circle" data-gjs-type="icon" style="font-size:0.4em;line-height:inherit;display:block;"></i>
-    </span>
-    <p style="margin:0;padding:0;text-align:left;">Text</p>`;
+export const uListItemContent = [
+  {
+    tagName: "span",
+    attributes: { class: "fa-li" },
+    style: { left: "-2em", width: "2em" },
+    components: [
+      {
+        type: "icon",
+        tagName: "i",
+        attributes: { class: "fas fa-circle", "data-gjs-type": "icon" },
+        style: {
+          "font-size": "0.4em",
+          "line-height": "inherit",
+          display: "block",
+        },
+      },
+    ],
+  },
+  {
+    tagName: "p",
+    content: "Text",
+    style: { margin: "0", padding: "0", "text-align": "left" },
+  },
+];
 
-export const ulListItem =
-  `<li style="text-align:left" data-gjs-type="ulistitem">` +
-  uListItemContent +
-  `</li>`;
+export const ulListItem = {
+  type: "ulistitem",
+  tagName: "li",
+  attributes: { class: "ulistitem" },
+  style: { textAlign: "left" },
+  components: uListItemContent,
+};
 
 // Define ostendis type trait for text and default components
 export function ostTypeTextTrait(opts: Required<PluginOptions>) {

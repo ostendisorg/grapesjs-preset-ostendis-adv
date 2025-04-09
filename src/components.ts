@@ -198,7 +198,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           "margin-left": "2em",
           "line-height": "1.4em",
         },
-        components: ulListItem + ulListItem + ulListItem,
+        components: [ulListItem, ulListItem, ulListItem],
         traits: [
           "id",
           ostTypeTextTrait(opts),
