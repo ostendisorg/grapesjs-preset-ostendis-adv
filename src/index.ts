@@ -138,6 +138,7 @@ const plugin: Plugin<PluginOptions> = async (
         savedStyles[id] = { ...rule.getStyle() };
       }
     });
+    console.log(savedStyles);
     const clonedComponent = component.clone();
     const clonedComponents = getAllComponentsRecursive(clonedComponent);
     originalComponents.forEach((orig, idx) => {
