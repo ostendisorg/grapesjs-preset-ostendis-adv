@@ -125,59 +125,6 @@ const plugin: Plugin<PluginOptions> = async (
     return false;
   }
 
-  function cloneWithStyles(editor: any, component: any, insertAt: number) {
-    const css = editor.CssComposer;
-    const origToCloneMap: Map<string, string> = new Map();
-    const originalComponents = getAllComponentsRecursive(component);
-
-    const savedStyles: Record<string, any> = {};
-    originalComponents.forEach((comp) => {
-      const id = comp.getId();
-      const rule = css.getRule(`#${id}`);
-      if (rule) {
-        savedStyles[id] = { ...rule.getStyle() };
-      }
-    });
-    console.log(savedStyles);
-    const clonedComponent = component.clone();
-    const clonedComponents = getAllComponentsRecursive(clonedComponent);
-    originalComponents.forEach((orig, idx) => {
-      const clone = clonedComponents[idx];
-      if (clone) {
-        origToCloneMap.set(orig.getId(), clone.getId());
-      }
-    });
-    origToCloneMap.forEach((newId, oldId) => {
-      const style = savedStyles[oldId];
-      if (style && Object.keys(style).length > 0) {
-        (css as any).addRules?.([
-          {
-            selectors: [`#${newId}`],
-            style: JSON.parse(JSON.stringify(style)),
-          },
-        ]);
-      }
-    });
-    // Add style to original
-    Object.entries(savedStyles).forEach(([id, style]) => {
-      const rule =
-        css.getRule(`#${id}`) ||
-        css.add([{ selectors: [`#${id}`], style: {} }])[0];
-      rule.setStyle({ ...style });
-    });
-    component.parent()?.append(clonedComponent, { at: insertAt });
-
-    return clonedComponent;
-  }
-
-  function getAllComponentsRecursive(component: any): any[] {
-    const result = [component];
-    component.components().each((child: any) => {
-      result.push(...getAllComponentsRecursive(child));
-    });
-    return result;
-  }
-
   function showOstToolbar(listItem: Component | undefined) {
     var elPos = listItem?.index() || 0;
     var elLast = listItem?.parent()?.getLastChild().index();
@@ -194,7 +141,7 @@ const plugin: Plugin<PluginOptions> = async (
       cBtn.title = options.t9n.ostToolbarClone;
       cBtn.addEventListener("click", () => {
         if (!listItem || !editor) return;
-        cloneWithStyles(editor, listItem, elPos + 1);
+        listItem?.parent()?.append(listItem?.clone(), { at: elPos + 1 });
       });
       ostToolbar.appendChild(cBtn);
 
