@@ -44,7 +44,7 @@ export const ulListItem = {
   type: "ulistitem",
   tagName: "li",
   attributes: { class: "ulistitem" },
-  style: { textAlign: "left" },
+  style: { "text-align": "left" },
   components: uListItemContent,
 };
 
