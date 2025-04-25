@@ -122,7 +122,11 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       {
         tagname: "div",
         components: [
-          `<h3>Title</h3>`,
+          {
+            type: "header",
+            tagName: "h3",
+            content: "Title",
+          },
           { tagname: "div", components: [{ type: "text", content: "Text" }] },
         ],
       },
@@ -148,7 +152,11 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       {
         tagname: "div",
         components: [
-          `<h3>Title</h3>`,
+          {
+            type: "header",
+            tagName: "h3",
+            content: "Title",
+          },
           { tagname: "div", components: [{ type: "ulist" }] },
         ],
       },
