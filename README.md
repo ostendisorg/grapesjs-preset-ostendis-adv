@@ -10,16 +10,16 @@ TODO
 
 Download using one of the options:
 
-* `npm i grapesjs-preset-ostendis-adv`
-* Latest release link https://github.com/ostendisorg/grapesjs-preset-ostendis-adv/releases
-
+- `npm i grapesjs-preset-ostendis-adv`
+- Latest release link https://github.com/ostendisorg/grapesjs-preset-ostendis-adv/releases
 
 ## Usage
 
 Directly in the browser
+
 ```html
-<link href="path/to/grapes.min.css" rel="stylesheet"/>
-<link href="path/to/grapesjs-preset-ostendis-adv.css" rel="stylesheet"/>
+<link href="path/to/grapes.min.css" rel="stylesheet" />
+<link href="path/to/grapesjs-preset-ostendis-adv.css" rel="stylesheet" />
 
 <script src="path/to/grapes.min.js"></script>
 <script src="path/to/grapesjs-preset-ostendis-adv.min.js"></script>
@@ -28,18 +28,19 @@ Directly in the browser
 
 <script type="text/javascript">
   var editor = grapesjs.init({
-      container : '#gjs',
-      plugins: ['grapesjs-preset-ostendis-adv'],
-      pluginsOpts: {
-        'grapesjs-preset-ostendis-adv': {
-          // options
-        }
-      }
+    container: "#gjs",
+    plugins: ["grapesjs-preset-ostendis-adv"],
+    pluginsOpts: {
+      "grapesjs-preset-ostendis-adv": {
+        // options
+      },
+    },
   });
 </script>
 ```
 
 Modern javascript
+
 ```js
 import grapesjs from 'grapesjs';
 import plugin from 'grapesjs-preset-ostendis-adv';
@@ -85,9 +86,16 @@ Build before the commit. This will also increase the patch level version of the 
 $ npm run build
 ```
 
+## Test Version (test.html)
+
+The file test.html was created for testing purposes. It can be used either with the Ostendis plugin or in its original version (see comments for details).
+
+URL: http://localhost:8080/test.html
+
 ## Release
 
 To install publishing dependency
+
 ```sh
 $ npm install --global np
 ```
@@ -97,6 +105,7 @@ Publish the package
 ```sh
 $ npm run release
 ```
+
 **ONLY** workes with package:
 https://www.npmjs.com/package/np
 
