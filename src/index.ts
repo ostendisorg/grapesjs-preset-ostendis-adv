@@ -141,7 +141,8 @@ const plugin: Plugin<PluginOptions> = async (
       cBtn.title = options.t9n.ostToolbarClone;
       cBtn.addEventListener("click", () => {
         if (!listItem || !editor) return;
-        listItem?.parent()?.append(listItem?.clone(), { at: elPos + 1 });
+        const clonedItem = listItem?.clone();
+        listItem?.parent()?.append(clonedItem, { at: elPos + 1 });
       });
       ostToolbar.appendChild(cBtn);
 

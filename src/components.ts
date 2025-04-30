@@ -253,7 +253,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       defaults: {
         tagName: "i",
         attributes: { class: "fas fa-star" },
-        traits: [iconTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
+        traits: ["id", iconTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
       },
     },
   });
