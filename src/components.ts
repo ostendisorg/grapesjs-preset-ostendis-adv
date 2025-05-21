@@ -128,16 +128,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           "data-fcolor": f,
         });
         this.addStyle({
-          background:
-            "linear-gradient(to right, " +
-            f +
-            " " +
-            p +
-            "%, " +
-            b +
-            " " +
-            p +
-            "%)",
+          background: `linear-gradient(to right, ${f} ${p}%, ${b} ${p}%)`,
         });
       },
     },
