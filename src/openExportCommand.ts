@@ -1,17 +1,9 @@
 import type { Editor } from "grapesjs";
-import juice from "juice";
 import PluginOptions from "./pluginOptions";
 
 export default (editor: Editor, opts: Required<PluginOptions>) => {
   const cmdm = editor.Commands;
   const pfx = editor.getConfig().stylePrefix;
-
-  cmdm.add(opts.cmdInlineHtml, {
-    run(editor, s, opts = {}) {
-      const tmpl = editor.getHtml() + `<style>${editor.getCss()}</style>`;
-      return juice(tmpl, { ...opts.juiceOpts, ...opts });
-    },
-  });
 
   cmdm.add(opts.cmdOpenExport, {
     containerEl: null as HTMLDivElement | null,
@@ -79,9 +71,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
 
       if (codeEditorHtml) {
         const tmpl = `${editor.getHtml()}<style>${editor.getCss()}</style>`;
-        codeEditorHtml.setContent(
-          opts.inlineCss ? juice(tmpl, opts.juiceOpts) : tmpl
-        );
+        codeEditorHtml.setContent(tmpl);
         codeEditorHtml.editor.refresh();
       }
     },
