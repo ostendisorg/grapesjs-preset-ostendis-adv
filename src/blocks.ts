@@ -442,6 +442,27 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
     attributes: { class: "fa-brands fa-square-x-twitter" },
   });
 
+  Blocks.add("tiktok", {
+    label: opts.t9n.tiktokBlkLabelSite,
+    category: opts.t9n.smSitesCategoryLabel,
+    content: {
+      type: "link",
+      style: {
+        display: "inline-block",
+        margin: "3px",
+        "text-decoration": "none",
+      },
+      attributes: {
+        href: "https://www.tiktok.com/",
+        target: "_blank",
+      },
+      components: `<div style="display:flex; justify-content: center; align-items: center; width:28px; height:28px; font-size:28px; color:#293133;">
+                    <i class="fa-brands fa-tiktok"></i>
+                  </div>`,
+    },
+    attributes: { class: "fa-brands fa-tiktok" },
+  });
+
   // Social Media Share blocks
   Blocks.add("facebookShare", {
     label: opts.t9n.facebookBlkLabelShare,

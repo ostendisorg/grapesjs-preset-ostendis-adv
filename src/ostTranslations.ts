@@ -58,6 +58,7 @@ export const ostTrans: OstTranslations = {
   linkedinBlkLabelSite: "LinkedIn link",
   xingBlkLabelSite: "Xing link",
   twitterBlkLabelSite: "Twitter link",
+  tiktokBlkLabelSite: "TikTok link",
 
   facebookBlkLabelShare: "Facebook share",
   linkedinBlkLabelShare: "LinkedIn share",
