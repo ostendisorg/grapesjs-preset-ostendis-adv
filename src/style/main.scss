@@ -26,9 +26,7 @@
   text-decoration: line-through;
 }
 
-.#{gjs_vars.$app-prefix}radio-item
-  input:checked
-  + .#{gjs_vars.$app-prefix}radio-item-label {
+.#{gjs_vars.$app-prefix}radio-item input:checked + .#{gjs_vars.$app-prefix}radio-item-label {
   color: gjs_vars.$whiteColor;
   background-color: gjs_vars.$mainColor;
 }
@@ -113,7 +111,17 @@ div.#{gjs_vars.$app-prefix}hover {
 }
 
 .#{gjs_vars.$app-prefix}toolbar-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+
+  & > .#{gjs_vars.$app-prefix}toolbar-item {
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .#{gjs_vars.$app-prefix}resizer-h {
@@ -161,20 +169,16 @@ div.#{gjs_vars.$app-prefix}hover {
 #gjs-rte-toolbar .#{gjs_vars.$app-prefix}rte-btn,
 .#{gjs_vars.$app-prefix}btn-prim,
 .#{gjs_vars.$app-prefix}btnt,
-.#{gjs_vars.$app-prefix}clm-tags
-  .#{gjs_vars.$app-prefix}sm-composite.#{gjs_vars.$app-prefix}clm-field,
-.#{gjs_vars.$app-prefix}clm-tags
-  .#{gjs_vars.$app-prefix}sm-field.#{gjs_vars.$app-prefix}sm-composite,
+.#{gjs_vars.$app-prefix}clm-tags .#{gjs_vars.$app-prefix}sm-composite.#{gjs_vars.$app-prefix}clm-field,
+.#{gjs_vars.$app-prefix}clm-tags .#{gjs_vars.$app-prefix}sm-field.#{gjs_vars.$app-prefix}sm-composite,
 .#{gjs_vars.$app-prefix}clm-tags .#{gjs_vars.$app-prefix}sm-stack #gjs-sm-add,
 .#{gjs_vars.$app-prefix}color-main,
 .#{gjs_vars.$app-prefix}mdl-dialog,
 .#{gjs_vars.$app-prefix}off-prv,
 .#{gjs_vars.$app-prefix}pn-btn,
 .#{gjs_vars.$app-prefix}pn-panel,
-.#{gjs_vars.$app-prefix}sm-sector
-  .#{gjs_vars.$app-prefix}sm-composite.#{gjs_vars.$app-prefix}clm-field,
-.#{gjs_vars.$app-prefix}sm-sector
-  .#{gjs_vars.$app-prefix}sm-field.#{gjs_vars.$app-prefix}sm-composite,
+.#{gjs_vars.$app-prefix}sm-sector .#{gjs_vars.$app-prefix}sm-composite.#{gjs_vars.$app-prefix}clm-field,
+.#{gjs_vars.$app-prefix}sm-sector .#{gjs_vars.$app-prefix}sm-field.#{gjs_vars.$app-prefix}sm-composite,
 .#{gjs_vars.$app-prefix}sm-sector .#{gjs_vars.$app-prefix}sm-stack #gjs-sm-add {
   color: gjs_vars.$fontColor;
 }
@@ -228,8 +232,7 @@ div.#{gjs_vars.$app-prefix}hover {
   padding: 5px;
 }
 
-.#{gjs_vars.$app-prefix}ost-toolbar
-  .#{gjs_vars.$app-prefix}ost-toolbar-item.disable {
+.#{gjs_vars.$app-prefix}ost-toolbar .#{gjs_vars.$app-prefix}ost-toolbar-item.disable {
   color: gjs_vars.$white30;
   cursor: inherit;
 }
@@ -375,8 +378,7 @@ div.#{gjs_vars.$app-prefix}hover {
   text-align: center;
 }
 
-.#{gjs_vars.$app-prefix}sm-sector
-  .#{gjs_vars.$app-prefix}sm-property.#{gjs_vars.$app-prefix}sm-list {
+.#{gjs_vars.$app-prefix}sm-sector .#{gjs_vars.$app-prefix}sm-property.#{gjs_vars.$app-prefix}sm-list {
   width: 50%;
 }
 
@@ -384,9 +386,7 @@ div.#{gjs_vars.$app-prefix}hover {
   border-top: none;
 }
 
-.#{gjs_vars.$app-prefix}sm-sector
-  .#{gjs_vars.$app-prefix}sm-property
-  .#{gjs_vars.$app-prefix}sm-layer.#{gjs_vars.$app-prefix}sm-active {
+.#{gjs_vars.$app-prefix}sm-sector .#{gjs_vars.$app-prefix}sm-property .#{gjs_vars.$app-prefix}sm-layer.#{gjs_vars.$app-prefix}sm-active {
   background-color: rgba(255, 255, 255, 0.09);
 }
 
@@ -519,7 +519,7 @@ div.#{gjs_vars.$app-prefix}hover {
   margin-left: auto;
   border-color: rgba(59, 89, 152, 0.2);
   line-height: 25px;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 /* Alert Ostendis Blocks*/
@@ -604,5 +604,54 @@ div.#{gjs_vars.$app-prefix}hover {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+
+/* Paste from Word Modal */
+
+#paste-from-word {
+  &-text {
+    margin-bottom: 15px;
+    color: gjs_vars.$fontColor;
+    font-size: 14px;
+  }
+
+  &-content {
+    box-sizing: border-box;
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: gjs_vars.$fontColor;
+    font-size: 14px;
+    line-height: 1.4;
+    resize: vertical;
+
+    &:focus {
+      outline: 1px solid gjs_vars.$mainColor;
+    }
+  }
+
+  &-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  &-apply {
+    padding: 10px 20px;
+    background: gjs_vars.$mainColor;
+    color: gjs_vars.$whiteColor;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:focus {
+      outline: 1px solid #2e4576;
+    }
   }
 }
