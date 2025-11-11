@@ -1,4 +1,4 @@
-import type { Component, Plugin } from "grapesjs";
+import type {Component, Plugin} from "grapesjs";
 import loadBlocks from "./blocks";
 import loadCommands from "./commands";
 import loadPanels from "./panels";
@@ -6,7 +6,7 @@ import loadTraits from "./traits";
 import loadComponents from "./components";
 import loadRte from "./rte";
 import PluginOptions from "./pluginOptions";
-import { ostTrans } from "./ostTranslations";
+import {ostTrans} from "./ostTranslations";
 import {
     headerTrait,
     ostTypeTextTrait,
@@ -271,62 +271,6 @@ const plugin: Plugin<PluginOptions> = async (
             ostToolbar.classList.add("show");
         }
     }
-
-    // On storage start
-    editor.on("storage:start", () => {
-        // Reset all Components
-        const getAllComponents = (model: any, result: any[] = []) => {
-            result.push(model);
-            model.components().each((mod: any) => getAllComponents(mod, result));
-            return result;
-        };
-        const allComponents = getAllComponents(editor.DomComponents.getWrapper());
-
-        allComponents.forEach((compo) => {
-            const defaultToolbar: ToolbarButton[] = [
-                {
-                    attributes: {class: "fa-solid fa-arrow-up"},
-                    command: "select-parent",
-                },
-                {
-                    attributes: {class: "fa-solid fa-arrows-up-down-left-right"},
-                    command: "tlb-move",
-                },
-                {
-                    attributes: {
-                        class: "fa-regular fa-copy"
-                    },
-                    command: "tlb-clone"
-                },
-                {
-                    attributes:
-                        {
-                            class: "fa-solid fa-trash"
-                        },
-                    command: "tlb-delete"
-                },
-            ];
-
-            // Add paste button only for UL elements
-            if (compo.getEl && compo.getEl()?.tagName === "UL") {
-                defaultToolbar.push({
-                    attributes: {
-                        class: "fa-solid fa-file-word",
-                        "data-tooltip": options.t9n.ostToolbarPasteFromWord,
-                        "data-tooltip-pos": "bottom"
-                    },
-                    command: "paste-from-word",
-                });
-            }
-
-            compo.set({
-                draggable: true,
-                removable: true,
-                copyable: true,
-                toolbar: defaultToolbar,
-            });
-        });
-    });
 };
 
 export default plugin;
