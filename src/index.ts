@@ -117,8 +117,8 @@ const plugin: Plugin<PluginOptions> = async (
             } else if (isChildOfElement(selected.getEl(), "LI")) {
                 showOstToolbar(selected.closest("li"));
             } else if (selected.getEl()?.tagName === "UL") {
-                // UL is selected - show built-in toolbar with paste button
-                const ulToolbar = [
+                // UL is selected - show toolbar with paste-from-word and standard buttons
+                const ulToolbar: ToolbarButton[] = [
                     {
                         attributes: {
                             class: "fa-solid fa-file-word",
@@ -127,18 +127,6 @@ const plugin: Plugin<PluginOptions> = async (
                         },
                         command: "paste-from-word",
                     },
-                ];
-
-                selected.set({
-                    toolbar: ulToolbar,
-                });
-
-                // Hide OST toolbar for UL elements
-                const ostToolbar = document.querySelector(".gjs-ost-toolbar");
-                ostToolbar?.classList.remove("show");
-            } else {
-                // For other elements, show default toolbar without paste button
-                const defaultToolbar: ToolbarButton[] = [
                     {
                         attributes: {class: "fa-solid fa-arrow-up"},
                         command: "select-parent",
@@ -158,10 +146,14 @@ const plugin: Plugin<PluginOptions> = async (
                 ];
 
                 selected.set({
-                    toolbar: defaultToolbar,
+                    toolbar: ulToolbar,
                 });
 
-                // Hide OST toolbar for other elements
+                // Hide OST toolbar for UL elements
+                const ostToolbar = document.querySelector(".gjs-ost-toolbar");
+                ostToolbar?.classList.remove("show");
+            } else {
+                // For other elements, just hide OST toolbar
                 const ostToolbar = document.querySelector(".gjs-ost-toolbar");
                 ostToolbar?.classList.remove("show");
             }
