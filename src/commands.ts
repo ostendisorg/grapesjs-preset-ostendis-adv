@@ -156,7 +156,7 @@ export default async (editor: Editor, opts: Required<PluginOptions>) => {
                     <p id="paste-from-word-text">${opts.t9n.labelPasteFromWordText}</p>
                     <textarea id="paste-from-word-content" placeholder="${opts.t9n.labelPasteFromWordPlaceholder}"></textarea>
                     <div id="paste-from-word-footer">
-                        <button id="paste-from-word-apply">${opts.t9n.labelPasteFromWordButton}</button>
+                        <button id="paste-from-word-apply" class="gjs-btn-prim">${opts.t9n.labelPasteFromWordButton}</button>
                     </div>
                 </div>
             `;

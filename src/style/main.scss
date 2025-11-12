@@ -635,23 +635,16 @@ div.#{gjs_vars.$app-prefix}hover {
   }
 
   &-footer {
-    margin-top: 20px;
     display: flex;
     justify-content: flex-end;
     gap: 10px;
   }
 
   &-apply {
-    padding: 10px 20px;
-    background: gjs_vars.$mainColor;
+    margin-top: 10px;
+    background-color: gjs_vars.$mainColor;
     color: gjs_vars.$whiteColor;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-
-    &:focus {
-      outline: 1px solid #2e4576;
-    }
+    padding-inline: 15px;
+    margin-left: auto;
   }
 }
