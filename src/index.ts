@@ -18,7 +18,6 @@ export type RequiredPluginOptions = Required<PluginOptions>;
 type ToolbarButton = {
     attributes?: {
         class?: string;
-        style?: string;
         "data-tooltip"?: string;
         "data-tooltip-pos"?: "bottom",
     };
