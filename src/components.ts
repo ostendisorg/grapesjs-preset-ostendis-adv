@@ -120,7 +120,6 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
 
       init() {
         const attr = this.getAttributes();
-        const el = this.view?.el;
 
         let p = parseInt(attr["data-percent"]);
         let f = attr["data-fcolor"];
@@ -130,13 +129,15 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
         if (!f) f = "#3b5998";
         if (!b) b = "#CCCCCC";
 
-        this.set("percent", Math.max(0, Math.min(100, p)));
-        this.set("bgcolor", b);
-        this.set("fcolor", f);
+        p = Math.max(0, Math.min(100, p));
 
-        this.on("change:percent", this.updateScale);
-        this.on("change:bgcolor", this.updateScale);
-        this.on("change:fcolor", this.updateScale);
+        this.set("percent", p, { silent: true });
+        this.set("bgcolor", b, { silent: true });
+        this.set("fcolor", f, { silent: true });
+
+        this.on("change:percent", () => this.updateScale());
+        this.on("change:bgcolor", () => this.updateScale());
+        this.on("change:fcolor", () => this.updateScale());
       },
 
       updateScale() {
@@ -147,13 +148,15 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
         if (isNaN(p)) p = 0;
         p = Math.max(0, Math.min(100, p));
 
-        this.set("attributes", {
+        const newAttrs = {
           "data-scale": "true",
-          "data-percent": p,
+          "data-percent": p.toString(),
           "data-fcolor": f,
           "data-bgcolor": b,
           "aria-label": `${p} %`,
-        });
+        };
+
+        this.setAttributes(newAttrs);
 
         this.addStyle({
           background: `linear-gradient(to right, ${f} ${p}%, ${b} ${p}%)`,
