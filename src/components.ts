@@ -138,6 +138,9 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
         this.on("change:percent", () => this.updateScale());
         this.on("change:bgcolor", () => this.updateScale());
         this.on("change:fcolor", () => this.updateScale());
+
+        // Force update on next tick to apply correct styles and clean up any persisted styles
+        setTimeout(() => this.updateScale(), 0);
       },
 
       updateScale() {
@@ -158,9 +161,18 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
 
         this.setAttributes(newAttrs);
 
-        this.addStyle({
+        // Create a fresh style object with only safe properties
+        const safeStyles = {
+          "box-sizing": "border-box",
+          padding: "0",
+          height: "20px",
+          "max-width": "100%",
+          border: "0px solid #666666",
           background: `linear-gradient(to right, ${f} ${p}%, ${b} ${p}%)`,
-        });
+        };
+
+        // Replace entire style to remove any conflicting properties
+        this.setStyle(safeStyles);
       },
     },
   });
