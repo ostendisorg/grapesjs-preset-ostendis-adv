@@ -135,12 +135,14 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
         this.set("bgcolor", b, { silent: true });
         this.set("fcolor", f, { silent: true });
 
-        this.on("change:percent", () => this.updateScale());
-        this.on("change:bgcolor", () => this.updateScale());
-        this.on("change:fcolor", () => this.updateScale());
+        const update = () => this.updateScale();
+        this.on("change:percent", update);
+        this.on("change:bgcolor", update);
+        this.on("change:fcolor", update);
+      },
 
-        // Force update on next tick to apply correct styles and clean up any persisted styles
-        setTimeout(() => this.updateScale(), 0);
+      onRender() {
+        this.updateScale();
       },
 
       updateScale() {
@@ -151,28 +153,31 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
         if (isNaN(p)) p = 0;
         p = Math.max(0, Math.min(100, p));
 
-        const newAttrs = {
+        this.setAttributes({
           "data-scale": "true",
           "data-percent": p.toString(),
           "data-fcolor": f,
           "data-bgcolor": b,
           "aria-label": `${p} %`,
-        };
+        });
 
-        this.setAttributes(newAttrs);
+        const styles = this.getStyle() || {};
 
-        // Create a fresh style object with only safe properties
-        const safeStyles = {
-          "box-sizing": "border-box",
-          padding: "0",
-          height: "20px",
-          "max-width": "100%",
-          border: "0px solid #666666",
-          background: `linear-gradient(to right, ${f} ${p}%, ${b} ${p}%)`,
-        };
+        // Remove conflicting background properties from saved HTML
+        [
+          "background-image",
+          "background-position-x",
+          "background-position-y",
+          "background-size",
+          "background-repeat",
+          "background-attachment",
+          "background-origin",
+          "background-clip",
+          "background-color",
+        ].forEach((prop) => delete styles[prop]);
 
-        // Replace entire style to remove any conflicting properties
-        this.setStyle(safeStyles);
+        styles["background"] = `linear-gradient(to right, ${f} ${p}%, ${b} ${p}%)`;
+        this.setStyle(styles);
       },
     },
   });
