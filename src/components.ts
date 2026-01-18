@@ -85,13 +85,12 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
                 },
                 style: {
                     'box-sizing': 'border-box',
-                    padding: '0',
-                    height: '20px',
+                    'height': '20px',
                     'max-width': '100%',
-                    border: '0px solid #666666',
-                    background: 'linear-gradient(to right, #3b5998 66%, #CCCCCC 66%)',
+                    'background': 'linear-gradient(to right, #3b5998 66%, #CCCCCC 66%)',
                 },
                 traits: [
+                    'id',
                     {
                         name: 'percent',
                         type: 'number',
@@ -135,6 +134,9 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
                 this.set('bgcolor', b, {silent: true})
                 this.set('fcolor', f, {silent: true})
 
+                // Clean up stale background properties from saved HTML
+                this.cleanupBackgroundStyles()
+
                 const update = () => this.updateScale()
                 this.on('change:percent', update)
                 this.on('change:bgcolor', update)
@@ -145,42 +147,49 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
                 this.updateScale()
             },
 
+            cleanupBackgroundStyles() {
+                const styles = this.getStyle() || {}
+                // Remove stale background-image that conflicts with gradient
+                delete styles['background-image']
+                delete styles['background-position-x']
+                delete styles['background-position-y']
+                delete styles['background-size']
+                delete styles['background-repeat']
+                delete styles['background-attachment']
+                delete styles['background-origin']
+                delete styles['background-clip']
+                delete styles['background-color']
+                this.setStyle(styles, {silent: true})
+            },
+
             updateScale() {
-                let p = parseInt(this.get('percent'))
-                const f = this.get('fcolor') || '#3b5998'
-                const b = this.get('bgcolor') || '#CCCCCC'
+                try {
+                    let p = parseInt(this.get('percent'))
+                    const f = this.get('fcolor') || '#3b5998'
+                    const b = this.get('bgcolor') || '#CCCCCC'
 
-                if (isNaN(p)) p = 0
-                p = Math.max(0, Math.min(100, p))
+                    if (isNaN(p)) p = 0
+                    p = Math.max(0, Math.min(100, p))
 
-                this.setAttributes(
-                    {
-                        'data-scale': 'true',
-                        'data-percent': p.toString(),
-                        'data-fcolor': f,
-                        'data-bgcolor': b,
-                        'aria-label': `${p} %`,
-                    },
-                    {silent: true},
-                )
+                    this.setAttributes(
+                        {
+                            'data-scale': 'true',
+                            'data-percent': p.toString(),
+                            'data-fcolor': f,
+                            'data-bgcolor': b,
+                            'aria-label': `${p} %`,
+                        },
+                        {silent: true},
+                    )
 
-                const styles = this.getStyle() || {};
+                    const styles = this.getStyle() || {}
 
-                // Remove conflicting background properties from saved HTML
-                [
-                    'background-image',
-                    'background-position-x',
-                    'background-position-y',
-                    'background-size',
-                    'background-repeat',
-                    'background-attachment',
-                    'background-origin',
-                    'background-clip',
-                    'background-color',
-                ].forEach((prop) => delete styles[prop])
-
-                styles['background'] = `linear-gradient(to right, ${f} ${p}%, ${b} ${p}%)`
-                this.setStyle(styles)
+                    // Apply gradient with validated colors
+                    styles['background'] = `linear-gradient(to right, ${f} ${p}%, ${b} ${p}%)`
+                    this.setStyle(styles)
+                } catch (error) {
+                    console.warn('Scale component update failed:', error)
+                }
             },
         },
     })
