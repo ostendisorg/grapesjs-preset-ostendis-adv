@@ -78,7 +78,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
                 attributes: {
                     'data-scale': 'true',
                     'data-percent': '66',
-                    'data-fcolor': '#3b5998',
+                    'data-fcolor': '#2f2924',
                     'data-bgcolor': '#CCCCCC',
                     'aria-label': '66 %',
                     role: 'img',
@@ -87,7 +87,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
                     'box-sizing': 'border-box',
                     'height': '20px',
                     'max-width': '100%',
-                    'background': 'linear-gradient(to right, #3b5998 66%, #CCCCCC 66%)',
+                    'background': 'linear-gradient(to right, #2f2924 66%, #CCCCCC 66%)',
                 },
                 traits: [
                     'id',
@@ -125,7 +125,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
                 let b = attr['data-bgcolor']
 
                 if (isNaN(p)) p = 66
-                if (!f) f = '#3b5998'
+                if (!f) f = '#2f2924'
                 if (!b) b = '#CCCCCC'
 
                 p = Math.max(0, Math.min(100, p))
@@ -165,7 +165,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
             updateScale() {
                 try {
                     let p = parseInt(this.get('percent'))
-                    const f = this.get('fcolor') || '#3b5998'
+                    const f = this.get('fcolor') || '#2f2924'
                     const b = this.get('bgcolor') || '#CCCCCC'
 
                     if (isNaN(p)) p = 0
