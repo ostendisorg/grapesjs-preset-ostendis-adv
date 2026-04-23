@@ -2,6 +2,7 @@
     "extends": "./node_modules/grapesjs-cli/dist/template/tsconfig.json",
     "include": ["src"],
     "compilerOptions": {
+      "ignoreDeprecations": "6.0",
       "types": ["node"],
       "target": "ES2015",
       "lib": ["ES2015", "DOM"]
